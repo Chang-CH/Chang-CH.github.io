@@ -102,6 +102,11 @@ function resetGrid(){
             if (current.classList.contains("path")){
                 current.classList.remove("path");
             }
+            current.setAttribute("data-parent-x", "");
+            current.setAttribute("data-parent-y", "");
+            current.setAttribute("data-f", -1);
+            current.setAttribute("data-g", -1);
+            current.setAttribute("data-h", -1);
         }
     }
     logs = [];
