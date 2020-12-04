@@ -63,7 +63,7 @@ body {
     margin-bottom: 10px;
     height: 80%;
     position: relative;
-    display: inline-flex;
+    display: inline-table;
 }
 
 .btn {
