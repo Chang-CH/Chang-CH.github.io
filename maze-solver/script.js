@@ -269,6 +269,7 @@ function solveMaze(){
         console.log("solveMaze -- missing start/end node");
         return false;
     }
+    resetGrid();
     // triggers solvers depending on algorithm selected
     switch(algorithm_select.value){
         case "a-star":
