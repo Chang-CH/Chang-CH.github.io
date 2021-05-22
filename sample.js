@@ -1,1 +1,1 @@
-button = document.getElementById('kekw').onclick=() => console.log('kekw');
+import test from './test.js';
