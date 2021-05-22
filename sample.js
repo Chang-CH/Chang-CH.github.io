@@ -1,0 +1,1 @@
+button = document.getElementById('kekw').onclick=() => console.log('kekw');
