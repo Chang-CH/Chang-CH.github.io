@@ -1,0 +1,16 @@
+@use './config/variables';
+
+.root {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  color: variables.$light-text-normal;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
