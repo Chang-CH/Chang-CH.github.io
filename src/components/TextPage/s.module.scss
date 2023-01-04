@@ -1,0 +1,23 @@
+@use '_styles/config/variables';
+
+.root {
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.div-content {
+  min-width: 800px;
+  width: 800px;
+  height: 100%;
+  background-color: #ffffff10;
+  justify-content: flex-start;
+  align-items: baseline;
+  padding: 4rem;
+}
+
+h2 {
+  border-bottom: 5px solid variables.$dark-text-contrast;
+  margin-block: 1rem;
+  font-weight: 700;
+}

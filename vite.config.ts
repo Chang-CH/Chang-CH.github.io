@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import svgr from "vite-plugin-svgr";
 import mdx from "@mdx-js/rollup";
 import path from "path";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 const commons = {
   resolve: {
@@ -26,6 +27,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
           jsxImportSource: "react",
         }),
         svgr(),
+        tsconfigPaths(),
       ],
       css: {
         modules: {

@@ -6,14 +6,20 @@ import {
   Routes,
   Route,
   Navigate,
+  Outlet,
 } from "react-router-dom";
 /** Styles */
 import * as global from "_styles/global.module.scss";
 import Spinner from "_components/Spinner";
 
-const About = React.lazy(() => import("./pages/about"));
+/** Theme */
+import { ChakraProvider } from "@chakra-ui/react";
+import theme from "_styles/theme";
+import TextPage from "_components/TextPage";
+
+/** Lazy imported pages */
+const Projects = React.lazy(() => import("./pages/projects"));
 const Home = React.lazy(() => import("./pages/home"));
-const Dev = React.lazy(() => import("./pages/dev"));
 
 const rootElement = document.getElementById("root");
 
@@ -24,35 +30,40 @@ rootElement.className = global.root;
 
 const root = ReactDOM.createRoot(rootElement as HTMLElement).render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        {/* * is the 404 page */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<Spinner />}>
-              <Home />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <Suspense fallback={<Spinner />}>
-              <About />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/dev"
-          element={
-            <Suspense fallback={<Spinner />}>
-              <Dev />
-            </Suspense>
-          }
-        />
-      </Routes>
-    </Router>
+    <ChakraProvider theme={theme}>
+      <Router>
+        <Routes>
+          {/* * is the 404 page */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+          <>
+            <Route
+              path="/"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <Home />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/"
+              element={
+                <TextPage>
+                  <Outlet />
+                </TextPage>
+              }
+            >
+              <Route
+                path="/projects"
+                element={
+                  <Suspense fallback={<Spinner />}>
+                    <Projects />
+                  </Suspense>
+                }
+              />
+            </Route>
+          </>
+        </Routes>
+      </Router>
+    </ChakraProvider>
   </React.StrictMode>
 );

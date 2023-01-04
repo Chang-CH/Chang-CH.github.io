@@ -1,112 +1,93 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { ReactComponent as LogoL } from "_assets/LogoL2.svg";
-import { ReactComponent as LogoR } from "_assets/LogoR2.svg";
 import styles from "./s.module.scss";
 import { Link } from "react-router-dom";
-import { STAGE_1_DELAY } from "./constants";
-import Magic from "./components/Magic";
+import StaggerGizmo from "_components/StaggerGizmo";
+import TextPage from "_components/TextPage";
+import { AiOutlineGithub, AiOutlineLinkedin } from "react-icons/ai";
+import { Button, Heading } from "@chakra-ui/react";
 
 function Home() {
-  const [stage, setStage] = useState(0);
-  useEffect(() => {
-    setTimeout(() => setStage(1), STAGE_1_DELAY);
-  }, []);
-
   return (
-    <div className={styles.root}>
-      <div>
-        <div
-          className={styles.divHello}
-          style={{
-            right: "calc(50% + 10rem)",
-          }}
-        >
-          <p
-            className={`${styles.title} ${styles.animated}`}
-            style={{ opacity: stage === 0 ? "0%" : "100%" }}
-          >
-            Hey,
+    <TextPage className={styles.root}>
+      <div className={styles.divCentered}>
+        <StaggerGizmo />
+        <div className={styles.divWrap}>
+          <p className={styles.pMarginless}>
+            Hello, i'm a web developer based in Singapore!
           </p>
-          <p
-            className={`${styles.title} ${styles.animated}`}
-            style={{
-              opacity: stage === 0 ? "0%" : "100%",
-              transitionDelay: "0.5s",
-            }}
-          >
-            i'm
-          </p>
-        </div>
-        <div>
-          <div
-            style={{
-              position: "relative",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "4rem",
-              width: stage === 0 ? "9ch" : "16ch",
-              height: "9ch",
-            }}
-          >
-            <LogoL
-              className={styles.animated}
-              stroke="black"
-              height="9ch"
-              width="9ch"
-              style={{
-                position: "absolute",
-                left: "calc(50% - 4.5ch)",
-              }}
-            />
-            <p
-              className={styles.animated}
-              style={{
-                position: "absolute",
-                left: "calc(50% + 1.5ch)",
-                opacity: stage === 0 ? "0%" : "100%",
-                transitionDelay: "1.5s",
-              }}
-            >
-              huan
-            </p>
-            <LogoR
-              className={styles.animated}
-              stroke="orange"
-              height="9ch"
-              width="9ch"
-              style={{
-                position: "absolute",
-                left: `calc(50% - ${stage === 0 ? "4.5ch" : "0.25ch"})`,
-                transitionDelay: "1s",
-              }}
-            />
-            <p
-              className={styles.animated}
-              style={{
-                position: "absolute",
-                left: "calc(50% + 8.5ch)",
-                color: "orange",
-                opacity: stage === 0 ? "0%" : "100%",
-                transitionDelay: "1.5s",
-              }}
-            >
-              ao
-            </p>
-          </div>
         </div>
       </div>
+      <Heading
+        borderBottom="5px solid orange"
+        marginBlock="1rem"
+        fontWeight="bold"
+        size="md"
+      >
+        About
+      </Heading>
+      <p className={styles.paragraph}>
+        My name is Chuan Hao, I am a singaporean doing my final year of studies
+        at the National University of Singapore (NUS). I major in computer
+        science with a focus in database systems and cyber security, and am on
+        track to graduate in May 2024. In my free time, I love to play badminton
+        and make digital art.
+      </p>
+      <Heading
+        borderBottom="5px solid orange"
+        marginBlock="1rem"
+        fontWeight="bold"
+        size="md"
+      >
+        Work experience
+      </Heading>
+      <p className={styles.paragraph}>
+        I am currently an undergraduate Teaching Assistant in NUS. I have been
+        teaching for about 2 years now, and have tutored modules ranging from
+        SQL databases to Introductory programming modules. I am currently taking
+        CS2100, computer organisation, as a lab TA.
+      </p>
+      <br></br>
+      <p className={styles.paragraph}>
+        I had previously interned in Shopee Singapore as a Software Engineer
+        Intern, under the Promotion Front End team. There, I worked on adding
+        batch upload capabilities for our promotion admin portal, as well as
+        multi language support for our campaign. Additionally, I developed a
+        javascript bundle size monitoring pipeline for Gitlab CI, which adds an
+        alert to pull requests that increase bundle sizes too drastically.
+      </p>
+      <Heading
+        borderBottom="5px solid orange"
+        marginBlock="1rem"
+        fontWeight="bold"
+        size="md"
+      >
+        Get in touch
+      </Heading>
       <div className={styles.divLinks}>
-        <Link to="/about" className={styles.linkText}>
-          About
-        </Link>
-        <Link to="/resume" className={styles.linkText}>
-          Resume
-        </Link>
-        <Link to="/contact" className={styles.linkText}>
-          Contact
-        </Link>
+        <a
+          href="https://www.linkedin.com/in/chuan-hao-c-57b096208/"
+          className={styles.linkText}
+        >
+          <Button
+            colorScheme="orange"
+            variant="ghost"
+            leftIcon={<AiOutlineLinkedin />}
+            className={styles.buttonLink}
+          >
+            LinkedIn
+          </Button>
+        </a>
+        <a href="https://github.com/Chang-CH" className={styles.linkText}>
+          <Button
+            colorScheme="orange"
+            variant="ghost"
+            leftIcon={<AiOutlineGithub />}
+            className={styles.buttonLink}
+          >
+            @Chang-CH
+          </Button>
+        </a>
       </div>
-    </div>
+    </TextPage>
   );
 }
 
