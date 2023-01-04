@@ -9,7 +9,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { AiFillGithub, AiOutlineSearch } from "react-icons/ai";
-import { Link } from "react-router-dom";
 import Spinner from "_components/Spinner";
 
 interface ProjectCardProps {

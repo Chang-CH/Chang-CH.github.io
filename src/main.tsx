@@ -28,7 +28,7 @@ if (!rootElement) {
 }
 rootElement.className = global.root;
 
-const root = ReactDOM.createRoot(rootElement as HTMLElement).render(
+const root = ReactDOM.createRoot(rootElement ).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <Router>

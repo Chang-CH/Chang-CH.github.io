@@ -1,5 +1,4 @@
-import { Image, Stack } from "@chakra-ui/react";
-import Spinner from "_components/Spinner";
+import { Stack } from "@chakra-ui/react";
 import ProjectCard from "./Card";
 
 import hiresideImage from "_assets/hireside.png";

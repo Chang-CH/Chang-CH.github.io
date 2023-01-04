@@ -1,5 +1,4 @@
 import styles from "./s.module.scss";
-import { Link } from "react-router-dom";
 import StaggerGizmo from "_components/StaggerGizmo";
 import TextPage from "_components/TextPage";
 import { AiOutlineGithub, AiOutlineLinkedin } from "react-icons/ai";
