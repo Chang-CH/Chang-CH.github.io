@@ -1,21 +1,10 @@
-import { Flex, useColorModeValue } from "@chakra-ui/react";
-import Navbar from "_components/Navbar";
-import styles from "./s.module.scss";
+import { Flex, useColorModeValue } from '@chakra-ui/react';
+import Navbar from '_components/Navbar';
+import styles from './s.module.scss';
 
-const TextPage: React.FC = ({
-  children,
-  header,
-}: {
-  children?: React.ReactNode;
-  header?: React.FC;
-}) => {
+const TextPage: React.FC = ({ children }: { children?: React.ReactNode }) => {
   return (
-    <Flex
-      className={styles.root}
-      direction="column"
-      align="center"
-      justify="center"
-    >
+    <Flex className={styles.root} direction="column" align="center" justify="center">
       <Navbar />
       <Flex
         padding="4rem"
@@ -24,7 +13,7 @@ const TextPage: React.FC = ({
         flex="1"
         align="baseline"
         justify="flex-start"
-        bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
+        bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
       >
         {children}
       </Flex>

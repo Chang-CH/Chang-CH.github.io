@@ -1,7 +1,7 @@
-import { useColorMode } from "@chakra-ui/react";
-import { ReactComponent as LightLogo } from "_assets/Logo2Light.svg";
-import { ReactComponent as DarkLogo } from "_assets/Logo2Dark.svg";
-import styles from "./s.module.scss";
+import { useColorMode } from '@chakra-ui/react';
+import { ReactComponent as LightLogo } from '_assets/Logo2Light.svg';
+import { ReactComponent as DarkLogo } from '_assets/Logo2Dark.svg';
+import styles from './s.module.scss';
 
 function Spinner() {
   const { colorMode } = useColorMode();

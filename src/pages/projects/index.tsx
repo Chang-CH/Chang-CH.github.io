@@ -1,8 +1,8 @@
-import { Stack } from "@chakra-ui/react";
-import ProjectCard from "./Card";
+import { Stack } from '@chakra-ui/react';
+import ProjectCard from './Card';
 
-import hiresideImage from "_assets/hireside.png";
-import drawImage from "_assets/draw2p.png";
+import hiresideImage from '_assets/hireside.png';
+import drawImage from '_assets/draw2p.png';
 
 function About() {
   return (
@@ -11,7 +11,7 @@ function About() {
         preview={drawImage}
         title="Draw2P"
         description="Peer to peer Google Drawings. Communicates via WebRTC, drawing done with canvas."
-        tech={["React", "Ant Design", "Vite"]}
+        tech={['React', 'Ant Design', 'Vite']}
         link="https://chang-ch.github.io/draw2p/"
         source="https://github.com/Chang-CH/draw2p"
       />
@@ -19,7 +19,7 @@ function About() {
         preview={hiresideImage}
         title="Hireside"
         description="Renovation work price estimator. Shortlisted for NUS Venture Initiation Programme 2021."
-        tech={["React", "NextJS", "DynamoDB", "AWS"]}
+        tech={['React', 'NextJS', 'DynamoDB', 'AWS']}
         link="https://www.hireside.co"
       />
     </Stack>

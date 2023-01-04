@@ -1,34 +1,29 @@
-import React, { Suspense } from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-  Outlet,
-} from "react-router-dom";
+import React, { Suspense } from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import { Navigate, Outlet, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 /** Styles */
-import * as global from "_styles/global.module.scss";
-import Spinner from "_components/Spinner";
+import global from '_styles/global.module.scss';
+import Spinner from '_components/Spinner';
 
 /** Theme */
-import { ChakraProvider } from "@chakra-ui/react";
-import theme from "_styles/theme";
-import TextPage from "_components/TextPage";
+import { ChakraProvider } from '@chakra-ui/react';
+import theme from '_styles/theme';
+import TextPage from '_components/TextPage';
 
 /** Lazy imported pages */
-const Projects = React.lazy(() => import("./pages/projects"));
-const Home = React.lazy(() => import("./pages/home"));
+const Projects = React.lazy(() => import('./pages/projects'));
+const Home = React.lazy(() => import('./pages/home'));
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 
 if (!rootElement) {
-  throw new Error("Failed to find root. null received as root element.");
+  throw new Error('Failed to find root. null received as root element.');
 }
+
 rootElement.className = global.root;
 
-const root = ReactDOM.createRoot(rootElement ).render(
+const _root = ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <Router>
@@ -65,5 +60,5 @@ const root = ReactDOM.createRoot(rootElement ).render(
         </Routes>
       </Router>
     </ChakraProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

@@ -1,5 +1,5 @@
-import { useColorMode } from "@chakra-ui/react";
-import styles from "./s.module.scss";
+import { useColorMode } from '@chakra-ui/react';
+import styles from './s.module.scss';
 
 interface design {
   color1: string;
@@ -7,46 +7,46 @@ interface design {
   id: number;
 }
 
-const palette_dark = [
+const palette_dark: Array<design> = [
   {
     id: 0,
-    color1: "#ffffff",
-    color2: "#f4f4f4",
+    color1: '#ffffff',
+    color2: '#f4f4f4',
   },
   {
     id: 1,
-    color1: "#444",
-    color2: "#333",
+    color1: '#444',
+    color2: '#333',
   },
   {
     id: 2,
-    color1: "#F7931E",
-    color2: "#E7830E",
+    color1: '#F7931E',
+    color2: '#E7830E',
   },
 ];
 
-const palette_light = [
+const palette_light: Array<design> = [
   {
     id: 0,
-    color1: "#fffcf2",
-    color2: "#fcf7e3",
+    color1: '#fffcf2',
+    color2: '#fcf7e3',
   },
   {
     id: 1,
-    color1: "#444",
-    color2: "#333",
+    color1: '#444',
+    color2: '#333',
   },
   {
     id: 2,
-    color1: "#F7931E",
-    color2: "#E7830E",
+    color1: '#F7931E',
+    color2: '#E7830E',
   },
 ];
 
 const StaggerGizmo = () => {
   const SIZE = 19;
   const MAX_DELAY = 2000;
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode } = useColorMode();
 
   const grid: Array<Array<number>> = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -73,31 +73,23 @@ const StaggerGizmo = () => {
     <div
       className={styles.divMagic}
       style={{
-        width: "19rem",
-        height: "19rem",
+        width: '19rem',
+        height: '19rem',
       }}
     >
       {grid.map((rows, row) => {
         return (
-          <div className={styles.magicRow}>
+          <div className={styles.magicRow} key={`row${row}`}>
             {rows.map((values, col) => {
               return (
-                <div className={styles.magicContainer}>
+                <div className={styles.magicContainer} key={`row${row}col${col}`}>
                   <div
                     className={styles.magic}
                     style={{
                       backgroundImage: `linear-gradient(135deg, ${
-                        colorMode === "light"
-                          ? palette_light[values].color1
-                          : palette_dark[values].color1
-                      }, ${
-                        colorMode === "light"
-                          ? palette_light[values].color2
-                          : palette_dark[values].color2
-                      })`,
-                      animationDelay: `${Math.round(
-                        (MAX_DELAY * (row + col)) / (SIZE * 2)
-                      )}ms`,
+                        colorMode === 'light' ? palette_light[values].color1 : palette_dark[values].color1
+                      }, ${colorMode === 'light' ? palette_light[values].color2 : palette_dark[values].color2})`,
+                      animationDelay: `${Math.round((MAX_DELAY * (row + col)) / (SIZE * 2))}ms`,
                     }}
                   />
                 </div>
