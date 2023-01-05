@@ -33,8 +33,8 @@ function Home() {
       <p className={styles.paragraph}>
         I had previously interned in Shopee Singapore as a Software Engineer Intern, under the Promotion Front End team.
         There, I worked on adding batch upload capabilities for our promotion admin portal, as well as multi language
-        support for our campaign. Additionally, I developed a javascript bundle size monitoring pipeline for Gitlab CI,
-        which adds an alert to pull requests that increase bundle sizes too drastically.
+        support for our campaign media. Additionally, I developed a javascript bundle size monitoring pipeline for
+        Gitlab CI, which adds tracks increases in bundle sizes for pull requests.
       </p>
       <Heading borderBottom="5px solid orange" marginBlock="1rem" fontWeight="bold" size="md">
         Get in touch
