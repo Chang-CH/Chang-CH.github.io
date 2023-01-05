@@ -1,3 +1,5 @@
+PATH="/usr/local/bin:$PATH"
+
 export NVM_DIR="$HOME/.nvm/nvm.sh"
 . "$(dirname $NVM_DIR)/nvm.sh"
 
