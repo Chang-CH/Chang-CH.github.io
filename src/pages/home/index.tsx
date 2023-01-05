@@ -6,7 +6,7 @@ import { Button, Heading } from '@chakra-ui/react';
 
 function Home() {
   return (
-    <TextPage className={styles.root}>
+    <TextPage>
       <div className={styles.divCentered}>
         <StaggerGizmo />
         <div className={styles.divWrap}>

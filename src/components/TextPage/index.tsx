@@ -2,7 +2,9 @@ import { Flex, useColorModeValue } from '@chakra-ui/react';
 import Navbar from '_components/Navbar';
 import styles from './s.module.scss';
 
-const TextPage: React.FC = ({ children }: { children?: React.ReactNode }) => {
+type PageProps = { children: React.ReactNode };
+
+const TextPage = ({ children }: PageProps) => {
   return (
     <Flex className={styles.root} direction="column" align="center" justify="center">
       <Navbar />

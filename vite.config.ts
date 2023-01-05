@@ -8,10 +8,10 @@ import tsconfigPaths from "vite-tsconfig-paths";
 const commons = {
   resolve: {
     alias: {
-      _assets: [path.resolve(__dirname, "src/assets/")],
-      _styles: [path.resolve(__dirname, "src/styles/")],
-      _components: [path.resolve(__dirname, "src/components/")],
-      _markdown: [path.resolve(__dirname, "src/markdown/")],
+      _assets: path.resolve(__dirname, "src/assets/"),
+      _styles: path.resolve(__dirname, "src/styles/"),
+      _components: path.resolve(__dirname, "src/components/"),
+      _markdown: path.resolve(__dirname, "src/markdown/"),
     },
     extensions: [".ts", ".tsx", ".js"],
   },
