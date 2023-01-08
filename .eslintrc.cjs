@@ -23,8 +23,8 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    'project': './tsconfig.json',
-    'tsconfigRootDir': './'
+    project: './tsconfig.json',
+    tsconfigRootDir: './',
   },
   rules: {
     // Add your own rules here to override ones from the extended configs.
@@ -32,15 +32,16 @@ module.exports = {
     'unused-imports/no-unused-imports': 'error',
     'unused-imports/no-unused-vars': [
       'warn',
-      { 'vars': 'all', 'varsIgnorePattern': '^_', 'args': 'after-used', 'argsIgnorePattern': '^_' }
+      { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
     ],
+    semi: 'warn',
     'react/react-in-jsx-scope': 'off',
     'import/no-unresolved': [2, { ignore: ['.png$', '.webp$', '.jpg$', '.svg$'] }],
-    "sort-imports": [
-      "error",
+    'sort-imports': [
+      'error',
       {
-        "ignoreDeclarationSort": true
-      }
-    ]
+        ignoreDeclarationSort: true,
+      },
+    ],
   },
 };
