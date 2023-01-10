@@ -1,6 +1,6 @@
-#!/usr/bin/env sh
+#!/bin/sh
+
 . "$(dirname -- "$0")/_/husky.sh"
 
-exec >/dev/console 2>&1
-
-npx lint-staged
+# npx lint-staged
+echo $Path
