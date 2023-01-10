@@ -12,7 +12,7 @@ const cs2030s: Directory = {
   url: 'cs2030s',
   breadcrumbs: 'CS2030S',
   breadcrumbUrl: '/CS2030S',
-  content: React.lazy(() => import('./mods/cs2030s/notes.mdx')),
+  content: React.lazy(() => import('./mods/cs2030s/notes.md')),
 };
 
 const cs2040s: Directory = {
@@ -85,7 +85,7 @@ const cs4225: Directory = {
   content: React.lazy(() => import('./mods/cs4225/notes.mdx')),
 };
 
-export const modules = {
+export const modules: Record<string, Directory> = {
   cs1101s: cs1101s,
   cs2030s: cs2030s,
   cs2040s: cs2040s,

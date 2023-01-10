@@ -6,8 +6,9 @@ import { modules } from './docs';
 const Academics = () => {
   const { id } = useParams();
 
-  if (id && id in modules) {
-    const Content = modules[id]?.content;
+  if (id && modules && modules[id]) {
+    const directory = modules[id];
+    const Content = directory?.content;
 
     return (
       <Suspense fallback={<Spinner />}>
