@@ -1,0 +1,1 @@
+bob:$6$YSksHCmqScpJ9MRg$.pqQEW9RaAr40YsRi3z3WBqQY7NYLOHA.5EZhy0f0V2L5vFiwEv.f/5s30ghkArSHpS777TlomwKCvUvWgIhD1:1003:1003:Bob,,,:/home/bob:/bin/bash

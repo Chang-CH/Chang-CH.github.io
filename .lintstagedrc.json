@@ -7,9 +7,11 @@
     "prettier --write",
     "eslint"
   ],
-  "*.html": [
-    "eslint",
-    "prettier --write"
+  "*.mdx": [
+    "eslint"
+  ],
+  "*.md": [
+    "eslint"
   ],
   "*.scss": "prettier --write"
 }
