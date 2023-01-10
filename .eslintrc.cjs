@@ -7,6 +7,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'eslint-config-prettier',
+    'plugin:mdx/recommended',
   ],
   plugins: ['unused-imports', '@typescript-eslint', 'import'],
   settings: {
@@ -20,6 +21,10 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
+    "mdx/code-blocks": true,
+    // optional, if you want to disable language mapper, set it to `false`
+    // if you want to override the default language mapper inside, you can provide your own
+    "mdx/language-mapper": {}
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -43,5 +48,7 @@ module.exports = {
         ignoreDeclarationSort: true,
       },
     ],
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off'
   },
 };

@@ -2,5 +2,8 @@
 
 . "$(dirname -- "$0")/_/husky.sh"
 
+# prevent lint-staged spam
+exec >/dev/console 2>&1
+
 # npx does not work for some reason
 npx.cmd lint-staged
