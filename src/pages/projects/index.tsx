@@ -1,5 +1,5 @@
 import { Stack } from '@chakra-ui/react';
-import ProjectCard from './Card';
+import ProjectCard from './components/Card';
 
 import hiresideImage from '_assets/hireside.png';
 import drawImage from '_assets/draw2p.png';

@@ -2,6 +2,8 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { Navigate, Outlet, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import TextPage from '_components/TextPage';
+
 /** Styles */
 import global from '_styles/global.module.scss';
 import Spinner from '_components/Spinner';
@@ -9,11 +11,11 @@ import Spinner from '_components/Spinner';
 /** Theme */
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from '_styles/theme';
-import TextPage from '_components/TextPage';
 
 /** Lazy imported pages */
 const Projects = React.lazy(() => import('./pages/projects'));
 const Home = React.lazy(() => import('./pages/home'));
+const Notes = React.lazy(() => import('./pages/academics'));
 
 const rootElement = document.getElementById('root');
 
@@ -52,6 +54,14 @@ const _root = ReactDOM.createRoot(rootElement).render(
                 element={
                   <Suspense fallback={<Spinner />}>
                     <Projects />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/notes/:id"
+                element={
+                  <Suspense fallback={<Spinner />}>
+                    <Notes />
                   </Suspense>
                 }
               />
