@@ -40,7 +40,7 @@ const cs2103t: Directory = {
   url: 'cs2103t',
   breadcrumbs: 'CS2103T',
   breadcrumbUrl: '/CS2103T',
-  content: React.lazy(() => import('./mods/cs2103t/notes.md')),
+  content: React.lazy(() => import('./mods/cs2103t/notes.mdx')),
 };
 
 // const cs2105: Directory = {
@@ -101,32 +101,31 @@ export const modules: Record<string, Directory> = {
   cs4225: cs4225,
 };
 
-// TODO: markdown images are broken due to mdx not passing file paths through webpack
-const noteRoot: Directory = {
-  url: 'notes',
-  breadcrumbs: 'Notes',
-  breadcrumbUrl: '/notes',
-  content: () => (
-    <div>
-      <p>temp</p>
-    </div>
-  ),
-  subdirectories: [
-    cs1101s,
-    cs2030s,
-    cs2040s,
-    // cs2100,
-    // cs2102,
-    cs2103t,
-    // cs2105,
-    cs2106,
-    cs2107,
-    cs3230,
-    // cs3235,
-    cs3243,
-    cs4225,
-  ],
-};
+// const _noteRoot: Directory = {
+//   url: 'notes',
+//   breadcrumbs: 'Notes',
+//   breadcrumbUrl: '/notes',
+//   content: () => (
+//     <div>
+//       <p>temp</p>
+//     </div>
+//   ),
+//   subdirectories: [
+//     cs1101s,
+//     cs2030s,
+//     cs2040s,
+//     // cs2100,
+//     // cs2102,
+//     cs2103t,
+//     // cs2105,
+//     cs2106,
+//     cs2107,
+//     cs3230,
+//     // cs3235,
+//     cs3243,
+//     cs4225,
+//   ],
+// };
 
 // const routes = parseDirectory(noteRoot, (directory: Directory) => {
 //   const Content = directory.content;

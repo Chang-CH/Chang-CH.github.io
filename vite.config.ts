@@ -1,30 +1,31 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import svgr from "vite-plugin-svgr";
-import mdx from "@mdx-js/rollup";
-import path from "path";
-import tsconfigPaths from "vite-tsconfig-paths";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import svgr from 'vite-plugin-svgr';
+import mdx from '@mdx-js/rollup';
+import path from 'path';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 const commons = {
   resolve: {
     alias: {
-      _assets: path.resolve(__dirname, "src/assets/"),
-      _styles: path.resolve(__dirname, "src/styles/"),
-      _components: path.resolve(__dirname, "src/components/"),
-      _markdown: path.resolve(__dirname, "src/markdown/"),
+      _assets: path.resolve(__dirname, 'src/assets/'),
+      _styles: path.resolve(__dirname, 'src/styles/'),
+      _components: path.resolve(__dirname, 'src/components/'),
+      _markdown: path.resolve(__dirname, 'src/markdown/'),
     },
-    extensions: [".ts", ".tsx", ".js"],
+    extensions: ['.ts', '.tsx', '.js'],
   },
 };
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode, ssrBuild }) => {
-  if (command === "serve") {
+  if (command === 'serve') {
     return {
       plugins: [
         react(),
         mdx({
-          jsxImportSource: "react",
+          jsxImportSource: 'react',
+          providerImportSource: '@mdx-js/react',
         }),
         svgr(),
         tsconfigPaths(),
@@ -32,8 +33,8 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
       css: {
         modules: {
           // similar to localIdentName of webpack, gives us more info to debug css
-          generateScopedName: "[path][name]__[local]--[hash:base64:5]",
-          localsConvention: "camelCaseOnly",
+          generateScopedName: '[path][name]__[local]--[hash:base64:5]',
+          localsConvention: 'camelCaseOnly',
         },
       },
       ...commons,
@@ -45,20 +46,20 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
     plugins: [
       react(),
       mdx({
-        jsxImportSource: "react",
+        jsxImportSource: 'react',
       }),
       svgr(),
     ],
     build: {
-      minify: "esbuild",
+      minify: 'esbuild',
       rollupOptions: {
-        treeshake: "recommended",
+        treeshake: 'recommended',
       },
     },
     css: {
       modules: {
-        generateScopedName: "[hash:base64:5]",
-        localsConvention: "camelCaseOnly",
+        generateScopedName: '[hash:base64:5]',
+        localsConvention: 'camelCaseOnly',
       },
     },
   };

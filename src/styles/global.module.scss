@@ -2,6 +2,7 @@
 
 .root {
   display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   min-height: 100vh;
@@ -9,14 +10,14 @@
   // color: variables.$dark-text-normal;
 }
 
-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+// div {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+// }
 
-body {
-  // height: 100%;
-  // width: 100%;
+ul,
+ol {
+  padding: 0px 25px;
 }

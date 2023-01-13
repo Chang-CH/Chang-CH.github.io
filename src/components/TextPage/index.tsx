@@ -16,6 +16,7 @@ const TextPage = ({ children }: PageProps) => {
         align="baseline"
         justify="flex-start"
         bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
+        direction="column"
       >
         {children}
       </Flex>

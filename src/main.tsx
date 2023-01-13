@@ -1,10 +1,10 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import { Navigate, Outlet, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import TextPage from '_components/TextPage';
 
 /** Styles */
+import './index.css';
 import global from '_styles/global.module.scss';
 import Spinner from '_components/Spinner';
 
@@ -57,6 +57,7 @@ const _root = ReactDOM.createRoot(rootElement).render(
                   </Suspense>
                 }
               />
+
               <Route
                 path="/notes/:id"
                 element={

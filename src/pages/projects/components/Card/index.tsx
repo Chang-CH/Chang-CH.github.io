@@ -14,12 +14,12 @@ interface ProjectCardProps {
 const ProjectCard = (props: ProjectCardProps) => {
   return (
     <Card width="100%">
-      <CardBody width="100%">
+      <CardBody width="100%" justifyContent="center" alignItems="center" display="flex" flexDirection="column">
         {props.preview ? (
           <Image src={props.preview} alt="draw2p preview" fallback={<Spinner />} maxHeight="300px" />
         ) : null}
         <Stack width="100%">
-          <Stack direction="row" marginRight="auto">
+          <Stack direction="row" marginRight="auto" justifyContent="center" alignItems="center">
             <Heading size="md">{props.title}</Heading>
             {props.tech.map((name: string, index: number) => (
               <Badge key={index} colorScheme="orange">
