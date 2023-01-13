@@ -1,4 +1,4 @@
-import{j as n,e as r,F as i}from"./index.7e710b0f.js";function c(l){const e=Object.assign({h1:"h1",h2:"h2",ul:"ul",li:"li",h3:"h3",p:"p",ol:"ol",strong:"strong"},l.components);return r(i,{children:[n(e.h1,{children:"CS2106 notes"}),`
+import{j as n,d as r,F as i}from"./index.7bad5630.js";function c(l){const e=Object.assign({h1:"h1",h2:"h2",ul:"ul",li:"li",h3:"h3",p:"p",ol:"ol",strong:"strong"},l.components);return r(i,{children:[n(e.h1,{children:"CS2106 notes"}),`
 `,n(e.h2,{children:"Memory structure"}),`
 `,r(e.ul,{children:[`
 `,n(e.li,{children:"hierachy: Registers -> CPU cache ->  DRAM -> Flash/PCM -> HDD"}),`

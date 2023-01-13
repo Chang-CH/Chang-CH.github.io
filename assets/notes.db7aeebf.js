@@ -1,4 +1,4 @@
-import{j as n,e as i,F as l}from"./index.7e710b0f.js";function r(t){const e=Object.assign({h1:"h1",p:"p",h2:"h2",ul:"ul",li:"li",h3:"h3",ol:"ol",strong:"strong",pre:"pre",code:"code",img:"img",em:"em"},t.components);return i(l,{children:[n(e.h1,{children:"CS2103T AY2122 SEM 1"}),`
+import{j as n,d as i,F as l}from"./index.7bad5630.js";function r(t){const e=Object.assign({h1:"h1",p:"p",h2:"h2",ul:"ul",li:"li",h3:"h3",ol:"ol",strong:"strong",img:"img",em:"em",code:"code"},t.components);return i(l,{children:[n(e.h1,{children:"CS2103T AY2122 SEM 1"}),`
 `,n(e.p,{children:`General notes
 Ctrl+Alt+L: Reformat code/style
 Intellij not following code style: Ctrl+Alt+S: open code style, ensure project settings correct/same as default/ copy default to project`}),`
@@ -61,16 +61,19 @@ Redirecting IO: java Program < input.txt > output.txt`}),`
 `,n(e.p,{children:`RCS Branching: Evolving multiple versions of the software in parallel.
 Merge Conflicts: trying to merge 2 branches that made diff changes to the same file`}),`
 `,i(e.p,{children:["Packages: for organization. Requires package statement at top. Written as ",n(e.strong,{children:"All lowercase with dot as separator"})]}),`
-`,n(e.pre,{children:n(e.code,{children:`- Importing a package does not import sub packages
-- import static -> imports static members, can use without prefix, i.e. without packagename.STATIC_CONST
-`})}),`
+`,i(e.ul,{children:[`
+`,n(e.li,{children:"Importing a package does not import sub packages"}),`
+`,n(e.li,{children:"import static -> imports static members, can use without prefix, i.e. without packagename.STATIC_CONST"}),`
+`]}),`
 `,n(e.p,{children:`Coding standard: follow consistent style, aim to looks like code written by 1 person
 Developer testing: done by devs themselves, usually durng development -> Early stages easier to find bus, debug; less major reworks/ production delays
-Unit Testing: testing individual units, i.e. classes, methods. Usually named ClassNameTest
-- test case use camelCase + underscore i.e. addCommand_nullInput_fails()
+Unit Testing: testing individual units, i.e. classes, methods. Usually named ClassNameTest`}),`
+`,i(e.ul,{children:[`
+`,n(e.li,{children:`test case use camelCase + underscore i.e. addCommand_nullInput_fails()
 Test driver: code that executes SUT for testing
-Stubs: dummy classes to isolate SUT from dependencies. Implements same interface but much simpler/faked behaviour
-- e.g. Foo takes in a Bar interface, create BarStub for testing rather than using actual BarConcrete`}),`
+Stubs: dummy classes to isolate SUT from dependencies. Implements same interface but much simpler/faked behaviour`}),`
+`,n(e.li,{children:"e.g. Foo takes in a Bar interface, create BarStub for testing rather than using actual BarConcrete"}),`
+`]}),`
 `,n(e.h3,{children:"UML"}),`
 `,n(e.p,{children:"Models - abstractions, simple representation of an entity. Multiple may be needed to fully represent"}),`
 `,i(e.ul,{children:[`
@@ -88,7 +91,7 @@ Stubs: dummy classes to isolate SUT from dependencies. Implements same interface
 `,i(e.ul,{children:[`
 `,n(e.li,{children:"describes structure (not behaviour) of OOP solution"}),`
 `]}),`
-`,n(e.p,{children:n(e.img,{src:"./res/assets/UML_classDiagram.JPG",alt:"Syntax"})}),`
+`,n(e.p,{children:n(e.img,{src:"res/assets/UML_classDiagram.JPG",alt:"Syntax"})}),`
 `,i(e.ul,{children:[`
 `,n(e.li,{children:"attributes/operations compartment may be ommited/ left blank"}),`
 `,i(e.li,{children:[n(e.strong,{children:"Visibility"}),":",`
@@ -161,7 +164,7 @@ Parts must be actually a part of the whole.`]}),`
 `,n(e.li,{children:"Interfaces --\u25B7 [Arrow, hollow triangle head, dashed line]"}),`
 `]}),`
 `,i(e.ul,{children:[`
-`,i(e.li,{children:["Denoted by ",n(e.code,{children:"<<interface>>"})," in the UML header, like enums"]}),`
+`,i(e.li,{children:["Denoted by ",n(e.code,{children:"&lt;&lt;interface&gt;&gt;"})," in the UML header, like enums"]}),`
 `,n(e.li,{children:"Dashed line with hollow triangle head to implement"}),`
 `]}),`
 `,i(e.ol,{start:"9",children:[`
@@ -202,12 +205,13 @@ Note: arrow represents function of dest: a -func->b, func is a method of b.`]}),
 `,i(e.ol,{children:[`
 `,n(e.li,{children:"Loops [loop]:"}),`
 `]}),`
-`,n(e.p,{children:n(e.img,{src:"./res/assets/UML_loop.JPG",alt:"Syntax"})}),`
-`,i(e.ol,{start:"2",children:[`
+`,i(e.p,{children:[n("img",{src:"res/assets/UML_loop.JPG",alt:"UML loops"}),";"]}),`
+`,i(e.ol,{children:[`
 `,n(e.li,{children:`Object instantiation: arrow point out to new component, new component short activation bar (constructor), then return to creator.
 Bar must start at top of entity.`}),`
 `]}),`
-`,i(e.p,{children:["NOTE"," activation bars/return arrows can be omitted if they are not ambiguous/ lose relevant info (info about the task)"]}),`
+`,i(e.p,{children:[n("span",{style:{backgroundColor:"#aa0000"},children:"NOTE"}),`
+activation bars/return arrows can be omitted if they are not ambiguous/ lose relevant info (info about the task)`]}),`
 `,i(e.ol,{start:"3",children:[`
 `,n(e.li,{children:"Object deletion[x]: arrow from lifeline of caller, lifeline of deleted object terminate with x at end of arrow"}),`
 `,n(e.li,{children:"Self Invocation/ Invoke in activation bar:"}),`
