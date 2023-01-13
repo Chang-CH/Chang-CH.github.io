@@ -1,4 +1,0 @@
-aaaaaaaaaaaaaaa
-2147483647
-ls -a
-cat flag.txt
