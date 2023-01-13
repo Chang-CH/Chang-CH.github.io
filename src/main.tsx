@@ -59,7 +59,7 @@ const _root = ReactDOM.createRoot(rootElement).render(
               />
 
               <Route
-                path="/notes/:id"
+                path="/academics/:id"
                 element={
                   <Suspense fallback={<Spinner />}>
                     <Notes />

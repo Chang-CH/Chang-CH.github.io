@@ -101,6 +101,8 @@ export const modules: Record<string, Directory> = {
   cs4225: cs4225,
 };
 
+export const baseUrl = import.meta.url;
+
 // const _noteRoot: Directory = {
 //   url: 'notes',
 //   breadcrumbs: 'Notes',

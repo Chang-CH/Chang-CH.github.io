@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 import { mdxComponents } from '_components/mdxComponents';
 import Spinner from '_components/Spinner';
-import { modules } from './docs';
+import { baseUrl, modules } from './docs';
 
 import './s.module.scss';
 
@@ -15,7 +15,7 @@ const Academics = () => {
     const Content = directory?.content;
 
     return (
-      <MDXProvider components={mdxComponents({ path: id })}>
+      <MDXProvider components={mdxComponents({ path: `mods/${id}`, url: baseUrl })}>
         <Suspense fallback={<Spinner />}>
           <Content />
         </Suspense>

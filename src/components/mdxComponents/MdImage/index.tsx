@@ -6,13 +6,12 @@ interface PropType {
   src?: string;
 }
 
-const mdImage: (prepend: string) => React.FC<PropType> = (prepend) => {
+const mdImage: (prepend: string, url: string) => React.FC<PropType> = (prepend, url) => {
   const ImageWithPrepend = (props: PropType) => {
     if (!props?.src) {
       return null;
     }
-
-    const imgSrc = new URL(`./${prepend}/${props.src}`, import.meta.url).href;
+    const imgSrc = new URL(`${prepend}/${props.src}`, url).href;
 
     return <Image src={imgSrc} />;
   };
