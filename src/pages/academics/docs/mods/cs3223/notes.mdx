@@ -1,0 +1,52 @@
+# CS3223
+
+## Wk 1: memory
+
+### Memory hierachy (capacity, latency)
+
+1. Registers (1KB, 0.3ns)
+2. L1 cache (64KB, 1ns)
+3. L2 cache (256KB, 3ns)
+4. L3 cacge (2 - 4MB, 10ns)
+5. dynamic RAM (4 - 64GB, 50 - 100 ns)
+6. Disk (4 - 16 TB, 5 - 10 ms)
+
+registers are 0.3ns, each level up x 3, memory 50 ns, disk 5 ms
+
+### Access time
+- command processing: parse SQL (considered negligible)
+- seek time: move arms (perpendicular to disk) to correct track (5 - 6 ms)
+- rotational delay: rotate track to correct block (average 1/2 rotion per access, depends on RPM)
+- transfer time: move data to and from disk (move huge amounts of data = longer)
+- **Disk access time** = seek + rotational + transfer
+- **Disk access response time** = disk access time + queue delay
+
+HDD avg sector transfer 100-200 microseconds, SSD 20-100 microseconds
+
+### DBMS buffer pool
+
+Buffer pool = cache of a DBMS, split into `frames` (block sized pages).
+- client can request for a disk page to be fetched into pool or release a page from pool
+- frames store s `pin count` and `dirty flag`. pin count == how many clients using, dirty == if it has been updated.
+- frame can only be released in pin count is 0
+
+Other than LRU, FIFO, MRU, Also have clock for page replacement policy. Basically a 1 chance round robin. 
+circular array of frames, skip frame if pin count > 0, change referenced bit to false if pin 0 and bit is on, take page if pin 0 and bit off.
+Turn reference bit on when pin count decrement to 0.
+
+### File implementation
+- Each record has an id called RID (page id + slot number). 1 page many slots.
+- files organized as:
+  1. Heap file, unordered. 
+    1. page header store 2 linked lists of **pages**, 1 for free space, 1 for used.
+    2. page directory has map to each data page.
+  2. Sorted file, ordered by search key
+  3. Hashed File, located in blocks by hash function
+
+**Within a page**, fixed length records:
+- packed: store records in contiguous slots, header stores number of records (slots).
+- unpacked: use bit array to indicate if slot if full, can choose any slots.
+
+Variable length records:
+![postgre slotted page](./res/pgSlottedPage.png)
+- offset of nth item stored at `H + n * L`, where `H` = Header size, `L` = size of pointer (offset + length)
