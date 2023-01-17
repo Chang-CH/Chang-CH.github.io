@@ -19,16 +19,13 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
-    'mdx/code-blocks': true,
+    // lint code blocks
+    // 'mdx/code-blocks': true,
     // optional, if you want to disable language mapper, set it to `false`
     // if you want to override the default language mapper inside, you can provide your own
     'mdx/language-mapper': {}
   },
   // parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: './tsconfig.json',
-    tsconfigRootDir: './',
-  },
   rules: {
     // Add your own rules here to override ones from the extended configs.
     'no-unused-vars': 'off', // or '@typescript-eslint/no-unused-vars': 'off',
@@ -52,9 +49,14 @@ module.exports = {
   overrides: [
     {
       'files': ['*.tsx', '*.ts'],
-      'extends': ['plugin:@typescript-eslint/recommended-requiring-type-checking']
+      'extends': ['plugin:@typescript-eslint/recommended-requiring-type-checking'],
+      'parser': '@typescript-eslint/parser',
+      'parserOptions': {
+        'project': './tsconfig.json',
+        'tsconfigRootDir': './',
+      },
     },
-        {
+    {
       'files': ['*.mdx', '*.md'],
       'parser': 'eslint-mdx',
       'extends': 'plugin:mdx/recommended',
@@ -62,6 +64,11 @@ module.exports = {
       'rules': {
         'prettier/prettier': 'off'
       }
+    },
+    {
+      // disable typescript on mdx code blocks
+      "files": "**/*.mdx/**",
+      "rules": {}
     }
   ]
 };
