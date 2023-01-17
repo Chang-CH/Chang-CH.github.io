@@ -1,4 +1,4 @@
-import{j as n,d as i,F as l}from"./index.7bad5630.js";function c(r){const e=Object.assign({h1:"h1",h2:"h2",h3:"h3",ol:"ol",li:"li",p:"p",ul:"ul",strong:"strong",code:"code",img:"img"},r.components);return i(l,{children:[n(e.h1,{children:"CS3223"}),`
+import{j as n,d as i,F as l}from"./index.27a0778a.js";function c(r){const e=Object.assign({h1:"h1",h2:"h2",h3:"h3",ol:"ol",li:"li",p:"p",ul:"ul",strong:"strong",code:"code",img:"img"},r.components);return i(l,{children:[n(e.h1,{children:"CS3223"}),`
 `,n(e.h2,{children:"Wk 1: memory"}),`
 `,n(e.h3,{children:"Memory hierachy (capacity, latency)"}),`
 `,i(e.ol,{children:[`

@@ -1,4 +1,4 @@
-import{j as n,d as i,F as t}from"./index.7bad5630.js";function l(r){const e=Object.assign({h2:"h2",p:"p",strong:"strong",ol:"ol",li:"li",code:"code",h3:"h3",pre:"pre",ul:"ul",em:"em"},r.components);return i(t,{children:[n(e.h2,{children:"AI: definitions"}),`
+import{j as n,d as i,F as t}from"./index.27a0778a.js";function l(r){const e=Object.assign({h2:"h2",p:"p",strong:"strong",ol:"ol",li:"li",code:"code",h3:"h3",pre:"pre",ul:"ul",em:"em"},r.components);return i(t,{children:[n(e.h2,{children:"AI: definitions"}),`
 `,i(e.p,{children:[`Strong AI: general problem solver, can solve many problems, very dynamic
 Weak AI: solves `,n(e.strong,{children:"fewer"})," problems (usually 1, but not always)"]}),`
 `,i(e.ol,{children:[`
