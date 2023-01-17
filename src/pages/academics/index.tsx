@@ -5,7 +5,7 @@ import { mdxComponents } from '_components/mdxComponents';
 import Spinner from '_components/Spinner';
 import { baseUrl, modules } from './docs';
 
-import './s.module.scss';
+import '_markdown/styles/s.module.scss';
 
 const Academics = () => {
   const { id } = useParams();

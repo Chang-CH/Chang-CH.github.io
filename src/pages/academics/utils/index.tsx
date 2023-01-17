@@ -1,12 +1,5 @@
 import React from 'react';
-
-export type Directory = {
-  url: string;
-  breadcrumbs: string;
-  breadcrumbUrl: string;
-  content: React.FC<any> | React.LazyExoticComponent<() => JSX.Element>;
-  subdirectories?: Array<Directory>;
-};
+import { Directory } from '_markdown/types';
 
 export const parseDirectory = (
   directory: Directory,

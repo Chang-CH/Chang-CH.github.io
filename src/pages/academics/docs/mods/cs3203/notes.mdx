@@ -1,0 +1,19 @@
+# CS3223
+
+## Wk 2 SOLID
+
+1. Single Responsibility Principle: Every class/function should only have 1 reason to change (`Journal` add entries/set entries, not save)
+2. Open Closed Principle: Opened for extension (instead of `filter(color)` use `filter(Specs)`), closed for modification
+3. Liskov Substitution Principle: `Child::method` acts the way you would expect `Parent::method` to. (`Square::setWidth` also changes height, violates LSP since assert area will fail)
+4. Interface Segregation Principle: separate `IMachine` into `IPrinter` and `IFax`, else some printer might have to implement empty `fax()` methods.
+5. Dependency Inversion Principle: Abstractions dont depend on details, e.g. `class.width * class.height` vs `class.getArea()` or `getArea(Shape)`.
+
+### Dont repeat yourself
+Duplication in code signifies an opportunity for abstraction. **NOT** incidental duplication: code to connect to db just so happens to be similar to webserver.
+
+### Agile
+- sprints 2-4 weeks
+- daily standups (scrum): like a commit --> what was done, what is in the way, etc.
+- sprint goals go into sprint backlog (anyone can contribute)
+- team selects item from backlog to work on for the sprint
+- after sprint finish, sprint review: demo new features etc, presentation

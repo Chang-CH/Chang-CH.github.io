@@ -1,5 +1,5 @@
 import React from 'react';
-import { Directory } from '../utils';
+import { Directory } from '_markdown/types';
 
 const cs1101s: Directory = {
   url: 'cs1101s',

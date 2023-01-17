@@ -16,6 +16,7 @@ import theme from '_styles/theme';
 const Projects = React.lazy(() => import('./pages/projects'));
 const Home = React.lazy(() => import('./pages/home'));
 const Notes = React.lazy(() => import('./pages/academics'));
+const SysDesign = React.lazy(() => import('./pages/sys'));
 
 const rootElement = document.getElementById('root');
 
@@ -49,6 +50,14 @@ const _root = ReactDOM.createRoot(rootElement).render(
                 </TextPage>
               }
             >
+              <Route
+                path="/sys/:id"
+                element={
+                  <Suspense fallback={<Spinner />}>
+                    <SysDesign />
+                  </Suspense>
+                }
+              />
               <Route
                 path="/projects"
                 element={
