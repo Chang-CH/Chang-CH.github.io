@@ -1,4 +1,4 @@
-import{j as n,d as i,F as t}from"./index.27a0778a.js";function r(l){const e=Object.assign({h1:"h1",h2:"h2",ul:"ul",li:"li",p:"p",strong:"strong",ol:"ol",em:"em"},l.components);return i(t,{children:[n(e.h1,{children:"CS2040S notes"}),`
+import{j as n,d as i,F as t}from"./index.9d0d6e4c.js";function r(l){const e=Object.assign({h1:"h1",h2:"h2",ul:"ul",li:"li",p:"p",strong:"strong",ol:"ol",em:"em"},l.components);return i(t,{children:[n(e.h1,{children:"CS2040S notes"}),`
 `,n(e.h2,{children:"Asymptotic analysis"}),`
 `,i(e.ul,{children:[`
 `,n(e.li,{children:"Sequential statements => (cost of first) + (cost of second)"}),`
