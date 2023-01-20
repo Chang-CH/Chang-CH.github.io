@@ -62,7 +62,9 @@ module.exports = {
       'extends': 'plugin:mdx/recommended',
       'plugins': ['prettier'],
       'rules': {
-        'prettier/prettier': 'off'
+        'prettier/prettier': 'off',
+        'semi': 'off',
+        'react/jsx-no-undef': 'off'
       }
     },
     {

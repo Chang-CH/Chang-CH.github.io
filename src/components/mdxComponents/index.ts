@@ -1,5 +1,5 @@
-import { Tooltip } from '@chakra-ui/react';
 import CodeBlock from './CodeBlock';
+import Details from './Details';
 import InlineCode from './InlineCode';
 import mdImage from './MdImage';
 
@@ -8,6 +8,6 @@ export const mdxComponents = ({ path = '', url = '' }: { path: string; url: stri
     pre: CodeBlock,
     code: InlineCode,
     img: mdImage(path, url),
-    Tooltip: Tooltip,
+    Details: Details,
   };
 };
