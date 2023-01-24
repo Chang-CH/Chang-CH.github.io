@@ -56,7 +56,7 @@ Variable length records:
 - Indexes: data structures to speed up information retrieval
 - Search key: sequence of 1 or more data attributes. Composite search key = at least 2 attributes. Unique index means search key is candidate key.
 - Index stored as sorted index file. e.g. table `Weights(name, weight)`, index by weight `Index(weight, ptr_to_Weights_record)`. Can add more layers for efficiency
-![indexing](indexing.png)
+![indexing](./res/indexing.png)
 
 Tree based b+ tree indexing
 
@@ -67,7 +67,7 @@ Tree based b+ tree indexing
 - Also has hashed based indexing, access by hash function.
 
 ### b+ tree operations
-![b+ tree](btree.png)
+![b+ tree](./res/btree.png)
 - non leaf nodes are not values: `[5]->[4][7]`, `5` __does not exist as a record__.
 - order `x` b+ tree means nodes contain at least `x` nodes, at most `2x` nodes. (except root node, root at least 1 at most `2x`)
 - Insert, page full (assume page max 4 entry):
@@ -76,7 +76,7 @@ Tree based b+ tree indexing
 - Deletion, underflow (node empty/ too little entries):
   - merge adjacent: `[10]->[4,5][11]`, result: `[4,5,11]`. Note that internal nodes might be redistributed:
 
-    ![redist](bredist.png)
+    ![redist](./res/bredist.png)
 
 ---
 

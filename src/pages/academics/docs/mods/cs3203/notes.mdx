@@ -1,5 +1,25 @@
 # CS3223
 
+## Abstract Syntax Tree
+
+Follows*(a,b) just means b does not need to be directly after a, can Follows(a,c) && Follows*(c,b).
+Note that for most syntax a,b refer to line numbers, except uses.
+
+1. Follows(a,b): in the same nesting level + in same statement list + statement b appears right after a
+2. Parent(a,b): b is nested in a
+  ```c
+  while (something) { //a
+    z = 10;
+    x = y + z; } //b. Parent(a,b) is true.
+  ```
+3. Uses(a,b): `Uses(10, "count") --> line 10: _ = count + x` or `Uses("f", "x") --> f() { x = 10 }` (or `f` calls another procedure that uses `x`)
+4. Modifies(a,b): like uses, but changes the value. same rules apply for procedures `Uses("f","x")`.
+  ```c
+  if (a) {} else { //line 10
+    x = 10; // Modifies(10, x) is true, even if if block no modify
+  }
+  ```
+
 ## Wk 2 SOLID
 
 1. Single Responsibility Principle: Every class/function should only have 1 reason to change (`Journal` add entries/set entries, not save)
