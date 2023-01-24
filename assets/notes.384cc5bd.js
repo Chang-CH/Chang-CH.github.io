@@ -1,4 +1,4 @@
-import{j as n,d as i,F as c}from"./index.9d0d6e4c.js";function d(r){const e=Object.assign({h1:"h1",h2:"h2",h3:"h3",ol:"ol",li:"li",p:"p",ul:"ul",strong:"strong",code:"code",img:"img",hr:"hr"},r.components);return i(c,{children:[n(e.h1,{children:"CS3223"}),`
+import{j as n,d as i,F as l}from"./index.a00e16f0.js";function d(r){const e=Object.assign({h1:"h1",h2:"h2",h3:"h3",ol:"ol",li:"li",p:"p",ul:"ul",strong:"strong",code:"code",img:"img",hr:"hr"},r.components);return i(l,{children:[n(e.h1,{children:"CS3223"}),`
 `,n(e.h2,{children:"Memory (Week 1)"}),`
 `,n(e.h3,{children:"Memory hierachy (capacity, latency)"}),`
 `,i(e.ol,{children:[`
@@ -58,7 +58,7 @@ Turn reference bit on when pin count decrement to 0.`}),`
 `,n(e.li,{children:"Indexes: data structures to speed up information retrieval"}),`
 `,n(e.li,{children:"Search key: sequence of 1 or more data attributes. Composite search key = at least 2 attributes. Unique index means search key is candidate key."}),`
 `,i(e.li,{children:["Index stored as sorted index file. e.g. table ",n(e.code,{children:"Weights(name, weight)"}),", index by weight ",n(e.code,{children:"Index(weight, ptr_to_Weights_record)"}),`. Can add more layers for efficiency
-`,n(e.img,{src:"indexing.png",alt:"indexing"})]}),`
+`,n(e.img,{src:"./res/indexing.png",alt:"indexing"})]}),`
 `]}),`
 `,n(e.p,{children:"Tree based b+ tree indexing"}),`
 `,i(e.ul,{children:[`
@@ -72,23 +72,50 @@ Turn reference bit on when pin count decrement to 0.`}),`
 `,n(e.li,{children:"Also has hashed based indexing, access by hash function."}),`
 `]}),`
 `,n(e.h3,{children:"b+ tree operations"}),`
-`,n(e.p,{children:n(e.img,{src:"btree.png",alt:"b+ tree"})}),`
-`,i(e.ul,{children:[`
-`,i(e.li,{children:["non leaf nodes are not values: ",n(e.code,{children:"[5]->[4][7]"}),", ",n(e.code,{children:"5"})," ",n(e.strong,{children:"does not exist as a record"}),"."]}),`
-`,i(e.li,{children:["order ",n(e.code,{children:"x"})," b+ tree means nodes contain at least ",n(e.code,{children:"x"})," nodes, at most ",n(e.code,{children:"2x"})," nodes. (except root node, root at least 1 at most ",n(e.code,{children:"2x"}),")"]}),`
-`,i(e.li,{children:["Insert, page full (assume page max 4 entry):",`
-`,i(e.ul,{children:[`
-`,i(e.li,{children:[n(e.code,{children:"[13] -> [4,5,6,7][14,15]"}),", insert ",n(e.code,{children:"8"}),", break up page: ",n(e.code,{children:"[4,5,6,7,8] => [6] -> [4,5][7,8]"}),", result = ",n(e.code,{children:"[6,13] -> [4,5][7,8][14,15]"}),"."]}),`
-`,i(e.li,{children:["redistribution: ",n(e.code,{children:"[13] -> [4,5,6,7][14,15]"}),", insert ",n(e.code,{children:"8"}),", ",n(e.code,{children:"[8] -> [4,5,6,7][8,14,15]"}),"."]}),`
-`]}),`
-`]}),`
-`,i(e.li,{children:["Deletion, underflow (node empty/ too little entries):",`
+`,n(e.p,{children:n(e.img,{src:"./res/btree.png",alt:"b+ tree"})}),`
 `,i(e.ul,{children:[`
 `,i(e.li,{children:[`
-`,i(e.p,{children:["merge adjacent: ",n(e.code,{children:"[10]->[4,5][11]"}),", result: ",n(e.code,{children:"[4,5,11]"}),". Note that internal nodes might be redistributed:"]}),`
-`,n(e.p,{children:n(e.img,{src:"bredist.png",alt:"redist"})}),`
+`,i(e.p,{children:["non leaf nodes are not values: ",n(e.code,{children:"[5]->[4][7]"}),", ",n(e.code,{children:"5"})," ",n(e.strong,{children:"does not exist as a record"}),"."]}),`
+`]}),`
+`,i(e.li,{children:[`
+`,i(e.p,{children:["order ",n(e.code,{children:"x"})," b+ tree means nodes contain at least ",n(e.code,{children:"x"})," nodes, at most ",n(e.code,{children:"2x"})," nodes. (except root node, root at least 1 at most ",n(e.code,{children:"2x"}),")"]}),`
+`]}),`
+`,i(e.li,{children:[`
+`,n(e.p,{children:"Insert:"}),`
+`,i(e.ol,{children:[`
+`,n(e.li,{children:"if page not full, insert."}),`
+`,i(e.li,{children:["if page full, check right neighbor. if not empty, redistribute. repeat for left if right full:",`
+`,i(e.ol,{children:[`
+`,i(e.li,{children:["take ",n(e.code,{children:"2d"})," smallest records, store in page. rest in neighbor. update parent node."]}),`
+`,i(e.li,{children:["e.g. ",n(e.code,{children:"[4]-->[1,3][4] + 2"})," \u2192 ",n(e.code,{children:"[3] --> [1,2][3,4]"}),"."]}),`
 `]}),`
 `]}),`
+`,i(e.li,{children:["split page:",`
+`,i(e.ol,{children:[`
+`,i(e.li,{children:["take ",n(e.code,{children:"d"})," smallest records, store in page. ",n(e.code,{children:"d+1"})," remaining records put in new leaf. add parent index as smallest of ",n(e.code,{children:"d+1"})," leaf node"]}),`
+`,i(e.li,{children:["if index node needs to split, ",n(e.code,{children:"d"})," smallest indexes in 1 node, ",n(e.code,{children:"d"})," largest indexes in 1 node. remaining 1 extra promote to higher depth."]}),`
+`,i(e.li,{children:["e.g. order 1: ",n(e.code,{children:"[4,8]-->[1,2][4,5][8,9] + 10"})," \u2192 ",n(e.code,{children:"[4,8,9]-->[1,2][4,5][8][9,10]"})," \u2192 ",n(e.code,{children:"[8] --> ([4] --> [1,2][4,5]) ([9]-->[8][9,10])"}),"."]}),`
+`]}),`
+`]}),`
+`]}),`
+`]}),`
+`,i(e.li,{children:[`
+`,n(e.p,{children:"Deletion, underflow (node empty/ too little entries):"}),`
+`,i(e.ol,{children:[`
+`,n(e.li,{children:"page not underflow, ok."}),`
+`,i(e.li,{children:["page underflow, check right neighbor size > ",n(e.code,{children:"d"}),", redistribute 1 record (see insert). repeat for left."]}),`
+`,i(e.li,{children:["merge nodes:",`
+`,i(e.ol,{children:[`
+`,i(e.li,{children:["if neighbour size ",n(e.code,{children:"d"}),", merge for ",n(e.code,{children:"2d - 1"})," size. remove index in between."]}),`
+`,n(e.li,{children:"if index node underflow, merge. pull parent index key down"}),`
+`,i(e.li,{children:[`e.g. order 2:
+`,n(e.code,{children:"[10] --> (other) ([20, 30] --> [10, 11][20, 21][30, 31]) delete 11"}),` \u2192
+`,n(e.code,{children:"[10] --> (other) ([30] --> [10, 20, 21][30, 31])"}),` \u2192
+`,n(e.code,{children:"[other, 10, 30] --> [...other child][10, 20, 21][30, 31])"})," done."]}),`
+`]}),`
+`]}),`
+`]}),`
+`,n(e.p,{children:n(e.img,{src:"./res/bredist.png",alt:"redist"})}),`
 `]}),`
 `]}),`
 `,n(e.hr,{}),`
@@ -106,4 +133,4 @@ Can only have 1 clustered index for each relation. e.g.: actual records sorted b
 `,n(e.li,{children:"unclustered index definitely dense, since data is not sorted in terms of search key, have to keep each search key as index record"}),`
 `]}),`
 `]}),`
-`]})]})}function t(r={}){const{wrapper:e}=r.components||{};return e?n(e,Object.assign({},r,{children:n(d,r)})):d(r)}export{t as default};
+`]})]})}function o(r={}){const{wrapper:e}=r.components||{};return e?n(e,Object.assign({},r,{children:n(d,r)})):d(r)}export{o as default};

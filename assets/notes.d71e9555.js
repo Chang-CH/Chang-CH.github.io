@@ -1,4 +1,4 @@
-import{j as n,d as i,F as c}from"./index.9d0d6e4c.js";function l(r){const e=Object.assign({h1:"h1",h2:"h2",ol:"ol",li:"li",strong:"strong",h3:"h3",ul:"ul",p:"p",code:"code",pre:"pre",hr:"hr"},r.components);return i(c,{children:[n(e.h1,{children:"CS2107 AY2122 S2"}),`
+import{j as n,d as i,F as c}from"./index.a00e16f0.js";function l(r){const e=Object.assign({h1:"h1",h2:"h2",ol:"ol",li:"li",strong:"strong",h3:"h3",ul:"ul",p:"p",code:"code",pre:"pre",hr:"hr"},r.components);return i(c,{children:[n(e.h1,{children:"CS2107 AY2122 S2"}),`
 `,n(e.h2,{children:"Lecture 0: Terminology"}),`
 `,i(e.ol,{children:[`
 `,i(e.li,{children:["Confidentiality: unauthorized disclosure ",n(e.strong,{children:"Cannot tell what was written"})," (ciphers)"]}),`

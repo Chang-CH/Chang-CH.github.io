@@ -1,4 +1,4 @@
-import{j as n,d as i,F as r}from"./index.9d0d6e4c.js";function o(l){const e=Object.assign({h2:"h2",ul:"ul",li:"li",pre:"pre",code:"code",strong:"strong",h3:"h3",img:"img",p:"p",ol:"ol",em:"em"},l.components);return i(r,{children:[n(e.h2,{children:"stable matching"}),`
+import{j as n,d as i,F as r}from"./index.a00e16f0.js";function o(l){const e=Object.assign({h2:"h2",ul:"ul",li:"li",pre:"pre",code:"code",strong:"strong",h3:"h3",img:"img",p:"p",ol:"ol",em:"em"},l.components);return i(r,{children:[n(e.h2,{children:"stable matching"}),`
 `,i(e.ul,{children:[`
 `,n(e.li,{children:"input: given 2 distinct groups of people each with their own rankings of people from the opposite group"}),`
 `,n(e.li,{children:`output: stable matching of people: there does not exist 2 pairs (x1, y1), (x2, y2) such that x1 likes y2 more than y1 and y2 likes x1 more than x2

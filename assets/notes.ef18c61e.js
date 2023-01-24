@@ -1,4 +1,4 @@
-import{j as n,d as r,F as t}from"./index.9d0d6e4c.js";function l(c){const e=Object.assign({h1:"h1",h2:"h2",h3:"h3",ol:"ol",li:"li",p:"p",a:"a",code:"code",ul:"ul",strong:"strong",h4:"h4"},c.components),{Details:i}=e;return i||d("Details",!0),r(t,{children:[n(e.h1,{children:"Networking summary"}),`
+import{j as n,d as r,F as t}from"./index.a00e16f0.js";function l(c){const e=Object.assign({h1:"h1",h2:"h2",h3:"h3",ol:"ol",li:"li",p:"p",a:"a",code:"code",ul:"ul",strong:"strong",h4:"h4"},c.components),{Details:i}=e;return i||d("Details",!0),r(t,{children:[n(e.h1,{children:"Networking summary"}),`
 `,n(e.h2,{children:"Visiting a page"}),`
 `,n(e.h3,{children:"Resolving IP of page"}),`
 `,r(e.ol,{children:[`
