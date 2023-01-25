@@ -17,7 +17,7 @@ const mdImage: (prepend: string, url: string) => React.FC<PropType> = (prepend, 
 
     // App deployed on netlify by assets are not copied over to netlify, so fetch from github instead
     // TODO: Consider copying assets over in future?
-    return <Image src={import.meta.env.MODE === 'production' ? ghUrl : imgSrc} />;
+    return <Image src={import.meta.env.DEV ? imgSrc : ghUrl} />;
   };
 
   return ImageWithPrepend;
