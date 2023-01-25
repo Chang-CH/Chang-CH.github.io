@@ -1,4 +1,4 @@
-import{j as n,d as i,F as l}from"./index.a00e16f0.js";function r(t){const e=Object.assign({h1:"h1",p:"p",h2:"h2",ul:"ul",li:"li",h3:"h3",ol:"ol",strong:"strong",img:"img",em:"em",code:"code"},t.components);return i(l,{children:[n(e.h1,{children:"CS2103T AY2122 SEM 1"}),`
+import{j as n,d as i,F as l}from"./index.8c0c9264.js";function r(t){const e=Object.assign({h1:"h1",p:"p",h2:"h2",ul:"ul",li:"li",h3:"h3",ol:"ol",strong:"strong",img:"img",em:"em",code:"code"},t.components);return i(l,{children:[n(e.h1,{children:"CS2103T AY2122 SEM 1"}),`
 `,n(e.p,{children:`General notes
 Ctrl+Alt+L: Reformat code/style
 Intellij not following code style: Ctrl+Alt+S: open code style, ensure project settings correct/same as default/ copy default to project`}),`

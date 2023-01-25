@@ -1,4 +1,4 @@
-import{j as n,d as i,F as a}from"./index.a00e16f0.js";function t(r){const e=Object.assign({h1:"h1",h2:"h2",ul:"ul",li:"li",h3:"h3",ol:"ol",code:"code",p:"p",strong:"strong",em:"em"},r.components);return i(a,{children:[n(e.h1,{children:"CS4225 22/23 S1"}),`
+import{j as n,d as i,F as a}from"./index.8c0c9264.js";function t(r){const e=Object.assign({h1:"h1",h2:"h2",ul:"ul",li:"li",h3:"h3",ol:"ol",code:"code",p:"p",strong:"strong",em:"em"},r.components);return i(a,{children:[n(e.h1,{children:"CS4225 22/23 S1"}),`
 `,n(e.h2,{children:"Lecture 2/3"}),`
 `,i(e.ul,{children:[`
 `,n(e.li,{children:"bandwidth: maximum amount of data that can be transmitted per unit time"}),`
