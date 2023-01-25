@@ -37,3 +37,11 @@ Duplication in code signifies an opportunity for abstraction. **NOT** incidental
 - sprint goals go into sprint backlog (anyone can contribute)
 - team selects item from backlog to work on for the sprint
 - after sprint finish, sprint review: demo new features etc, presentation
+
+## Wk 4 Design patterns
+
+1. [creational] Factory pattern: code might be coupled to `Truck` constructor, have abstract factory, implement `TruckFactory::createVehicle()`.
+    - 2103: private constructor, public factory method `createVehicle` prevent coupling of constructor
+2. [Structural] Facade pattern: like an API class in front of subsystem, prevent coupling with individual subsystem implementation
+3. [behavioral] Visitor: e.g. abstract Person, should only handle person logic (SRP), if also handle export can introduce bugs. 
+    have visitor class handle export for all Person concrete classes (`Student` etc.).
