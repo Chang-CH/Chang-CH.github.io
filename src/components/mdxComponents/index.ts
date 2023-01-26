@@ -1,3 +1,4 @@
+import { OrderedList, UnorderedList } from '@chakra-ui/react';
 import CodeBlock from './CodeBlock';
 import Details from './Details';
 import InlineCode from './InlineCode';
@@ -9,5 +10,7 @@ export const mdxComponents = ({ path = '', url = '' }: { path: string; url: stri
     code: InlineCode,
     img: mdImage(path, url),
     Details: Details,
+    ol: OrderedList,
+    ul: UnorderedList,
   };
 };

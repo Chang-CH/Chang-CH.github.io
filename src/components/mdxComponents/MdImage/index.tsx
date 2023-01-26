@@ -7,7 +7,11 @@ interface PropType {
 }
 
 const mdImage: (prepend: string, url: string) => React.FC<PropType> = (prepend, url) => {
+  const isDevelopmentMode = import.meta.env.DEV;
+
   const ImageWithPrepend = (props: PropType) => {
+    console.log(props);
+
     if (!props?.src) {
       return null;
     }
@@ -17,7 +21,7 @@ const mdImage: (prepend: string, url: string) => React.FC<PropType> = (prepend, 
 
     // App deployed on netlify by assets are not copied over to netlify, so fetch from github instead
     // TODO: Consider copying assets over in future?
-    return <Image src={import.meta.env.DEV ? imgSrc : ghUrl} />;
+    return <Image src={isDevelopmentMode ? imgSrc : ghUrl} />;
   };
 
   return ImageWithPrepend;
