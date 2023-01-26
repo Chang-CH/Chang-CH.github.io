@@ -10,18 +10,26 @@ const mdImage: (prepend: string, url: string) => React.FC<PropType> = (prepend, 
   const isDevelopmentMode = import.meta.env.DEV;
 
   const ImageWithPrepend = (props: PropType) => {
-    console.log(props);
-
     if (!props?.src) {
       return null;
     }
+
     const imgSrc = new URL(`${prepend}/${props.src}`, url).href;
 
-    const ghUrl = `https://chang-ch.github.io/${imgSrc}`;
+    if (!isDevelopmentMode) {
+      return <Image src={imgSrc} />;
+    }
 
-    // App deployed on netlify by assets are not copied over to netlify, so fetch from github instead
-    // TODO: Consider copying assets over in future?
-    return <Image src={isDevelopmentMode ? imgSrc : ghUrl} />;
+    const match = imgSrc.match(/(?<=src\/).*/);
+
+    if (!match) {
+      return null;
+    }
+
+    // TODO: less hacky way to get assets from github
+    const ghUrl = `https://raw.githubusercontent.com/Chang-CH/Chang-CH.github.io/main/src/${match[0]}`;
+
+    return <Image src={ghUrl} />;
   };
 
   return ImageWithPrepend;
