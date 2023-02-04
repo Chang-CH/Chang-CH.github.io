@@ -3,9 +3,20 @@
 ## Abstract Syntax Tree
 
 Follows*(a,b) just means b does not need to be directly after a, can Follows(a,c) && Follows*(c,b).
-Note that for most syntax a,b refer to line numbers, except uses.
 
-1. Follows(a,b): in the same nesting level + in same statement list + statement b appears right after a
+
+**Note**:
+- stmt = line no., entity = "name"
+- `read x;` modifies `x`, but does not uses `x`.
+- `print x;` uses `x`.
+- `a = b` uses `b` only, modifies `a` only
+- if block, if either then or else uses `a`, if statement uses `a`. Same for Modifies.
+
+
+1. Follows(a,b): given
+    1. same nesting level (by curly brace, a; \{ b \}, if (condition) condition not yet higher level)
+    2. in same statement list
+    3. statement b appears right after a
 2. Parent(a,b): b is nested in a
   ```c
   while (something) { //a
@@ -17,6 +28,7 @@ Note that for most syntax a,b refer to line numbers, except uses.
   ```c
   if (a) {} else { //line 10
     x = 10; // Modifies(10, x) is true, even if if block no modify
+    read x; 
   }
   ```
 
