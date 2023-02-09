@@ -134,3 +134,51 @@ Tree based b+ tree indexing
 **NOTE**: to check last bracket that had been split, total number of entries of (bucket + split image) must be at least (bucket_size + 1).
 
 Could have been a bucket with 4 pointers split into 2 pointers each, need not be only buckets with 1 pointer
+
+## Sorting and selection
+
+### External sorting
+
+- External sorting with x data pages using `m` buffer/memory pages (x >> `m`):
+    1. use all `m` memory pages at a time, sort m pages from data records, write to disk as block `M1`.
+    2. merge `M*` pages: let `m - 1` memory pages be input pages, take first page of `m - 1` `M*` pages.
+    3. write smallest records into 1 memory page, when memory page full write to disk.
+    4. if 1 input page used completely, take next page from the same `M*` page.
+- optimization, blocked I/O
+    - system sometimes allow reading of `b` contiguous pages in 1 i/o operation
+    - make 1 block (of `b` pages) for output
+    - floor divide number of remaining pages `k = (m - b)//b`, `k` input blocks.
+
+### B+ tree sort select
+
+Sorting with B+ tree, B+ tree already there:
+
+- clustered index just scan (records alr there)
+- unclustered index for each RID retrieve record.
+
+Select:
+
+- selectivity of access path = no. of index/data pages that need to be accessed to get data records
+    - usually most selective access path = traverse down smallest value, iterate right ![B+ tree selectivity](./res/btree_selectivity.png)
+- covering index for query `Q`: index contains all info required for query (no need fetch with RID etc.)
+- for `where ... and`: either look up RID and filter, or if b+ tree index for `and` also exist, find intersection of both trees.
+
+### Conjuncts
+
+- Conjunctive Normal Form: express in ands (each AVB is a conjunct): `(A V B) ^ (B V C)` etc.
+- index I on attribs (`K1, ... Kn`) matches predicate `p` if 
+    1. b+ tree: `p` is of the form `(K1 = c1) && ...(Ki = ci) && (Kj op cj)` &rarr; at most 1 non `==` op, non `==` must be last attrib. does not have to be all of index.
+    2. hash index: `p` is of the form `(K1 = c1) && ... (Kn = cn)` for some `c*`. (All attrib used, `=` not `>` etc.)
+- `primary conjuncts`: subset of conjuncts in predicate `p` that index **matches**: index on weight, predicate (weight = ..., name = ...), primary conjunct weight.
+- `non primary conjuncts`: conjuncts in p that are non primary
+- `covered conjuncts`: conjuncts in p that index I covers, e.g. index weight + height, predicate weight + name, covered = weight. (weight not primary)
+
+### Calculating cost
+
+- calculate number of pages accessed B+
+    1. cost to navigate internal nodes = depth = `log(num_leaf_nodes, branch factor)`.
+    2. scan leaf pages: `num_leaf_to_select / num_entries_each_leaf`.
+    3. retrieve data records: 0 if format 1(alr got),  `numRecordsSelected` otherwise. (can optimize by sort: max = `min(numTotalPages, numSelectedRecords)`, min `numRecordsSelected / recordsPerPage` )
+- calculate number of pages accessed hash
+    1. cost to get leaf pages: `numLeafToSelect / numRecordsPerPage`.
+    2. cost to retrieve data: 0 if format 1, same as B+ otherwise.

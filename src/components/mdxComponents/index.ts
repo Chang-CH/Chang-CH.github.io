@@ -9,7 +9,7 @@ export const mdxComponents = ({ path = '', url = '' }: { path: string; url: stri
     pre: CodeBlock,
     code: InlineCode,
     img: mdImage(path, url),
-    Details: Details,
+    Details,
     ol: OrderedList,
     ul: UnorderedList,
   };
