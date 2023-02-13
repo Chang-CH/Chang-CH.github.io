@@ -182,3 +182,83 @@ Select:
 - calculate number of pages accessed hash
     1. cost to get leaf pages: `numLeafToSelect / numRecordsPerPage`.
     2. cost to retrieve data: 0 if format 1, same as B+ otherwise.
+
+{/* TODO: add tutorial notes */}
+
+## projection
+
+- picks out a subset of columns, then removes duplicates from results, return.
+- if project with asterisk, no deduplication.
+- if index already exists on search key containing all wanted attributes, can just index scan.
+
+### Sort based approach
+
+process:
+
+1. Extract columns matching attributes `a`
+2. sort all columns, then remove duplicates
+
+cost:
+- read all pages of original table `R` (num of pages)
+- write to intermediate table `T` (num of pages R projected columns non dedupe)
+  - can optimize, write as initial sort runs, -1 merge depth next step
+- sort records: `2 * T * m`, `m` = number of passes (log initial sorted runs base merge factor + 1), `2x` for rw
+- scan and dedupe: `T` (0 if dedupe during merge)
+{/* TODO: last step should be x2? */}
+
+### Hash based approach
+
+process:
+
+1. [partition] setup 1 input buffer, rest output buffers. read 1 page per time, for each tuple remove unwanted attributes then apply hash function
+2. [partition] when output buffer full write to disk. (group output by output buffers, no tuple exist in 2 groups)
+3. [dedupe] setup 1 input buffer, rest use as in memory hash table. read partition output 1 page per time, for each tuple insert into hash table if not yet inside.
+4. [dedupe] if hash table is too big in step 3, recursively apply hash based partitioning to overflowed partition.
+
+cost:
+- hash based is effective if bucket size is large relative to size of table. (`Bucket size <= sqrt(T)`)
+- read all pages original table `R`
+- write all partitioned buckets `T`
+- deduplicate, rw all paritioned buckets `T` 
+{/* TODO: same, why dedupe only T not 2T rw? */}
+
+## Joins
+
+`Outer join Inner/R join S` (inner always rhs)
+
+### Iteration
+
+**NOTE**: output write cost ignored since worst case cross everything outweigh any approach
+
+
+**Loop Join**:
+
+- For each record in Outer, check if matches record in inner. if match, output. 
+- optimization, **page based loop join**: for each record in outer page check each record in inner page.
+- cost: scan R = `numPagesOuter` + for each scan S = `numRecordsOuter * numPagesInner` (or `numPagesOuter * numPagesInner` for page based)
+
+Block nested loop join
+- use 1 buffer page for output, 1 page for outer input, `B - 2` pages for inner input. for each `B-2` pages do block based join.
+- cost = `numPagesOuter` + `numPagesOuter/(B - 2) * numPagesInner`.
+
+Index Nested Loop join
+- if join on attribute A and index on Inner.A exists (all attribs of join), then for each record in Inner search index for corresponding A and join.
+- cost = `numPagesOuter` + `numRecordsInner * (numInnerInternalDepth + avgLeafNodesPerKey)`
+
+### Sort merge join
+
+- Sort inner and outer, merge. 
+- if need to cross on both sides need rewind: inner = `10 10 20 21`, outer = `10 10 11 12`, after `inner1,outer1; inner1,outer2`, `inner2 == inner1` so rewind to `outer1`.
+- cost: external sort cost + `numPagesInner` + `numPagesOuter` (assuming no cross like above, else `numRecordsInner * numpagesOuter` cross pdt)
+- optimization: if number of buffer pages > number of sorted runs in Inner + outer, no need to continue merge in initial sort, can join already (take smallest page of each sorted run)
+
+### Hash join
+
+- hash inner, outer into `k` partitions each
+- say inner.A = 1 in partition 1 and outer.A = 1 in partition 3, join partition 1 + 3.
+- partition x of inner used to populate hash table. read each page of partition x outer, for each record probe hash table, write to output.
+- when output buffer full write to disk (if output buffer not full do not write to disk even after partition pair joined)
+- if hash table does not fit in memory recursively partiton overflowed partitions
+- cost: `3 * (numPagesInner + numPagesOuter)` (assuming no overflow partition)
+- number of partitions `k = B - 1`, `B approx == sqrt(f * numPagesInner)` where `f` is fudge factor
+

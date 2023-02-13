@@ -57,4 +57,21 @@ Duplication in code signifies an opportunity for abstraction. **NOT** incidental
 2. [Structural] Facade pattern: like an API class in front of subsystem, prevent coupling with individual subcomponent implementation
 3. [behavioral] Visitor: if Person class already well implemented, adding extra methods e.g. `exportCsv` might introduce bugs, violate SRP.
     Therefore, have `Student::visit(Visitor v) => v.visitStudent()`. so can have `exportCsvVisitor`, `exportHtmlVisitor` etc.
-    
+  
+## Advanced SPA 
+
+### Control flow graph
+
+- group statements together (assign, call, read print etc.)
+- if / while have individual nodes
+- ignore control flow of procedure called by call, 1 procedure 1 cfg
+
+### New relationships
+
+1. `Next(a,b)`: if `b` is the next line execute after `a` and `b` is in the same cfg node or 1 cfg node edge away from `a`.
+2. `Affects(a1, a2)`: `a1` modifies variable `v` which is used by `a2`.
+  - `a1`, `a2` are assigns, if not assigns return false.
+3. `Calls(a,b)`: procedure `a` directly calls procedure `b`.
+4. `... with p.procName = "procedure1"`: can do equality checks on entity attributes.
+5. pattern `ifs (v, _, _)`, `while (v, _)` `v` = control variable.
+6. select `<s, v>` can return tuples (space separated).
