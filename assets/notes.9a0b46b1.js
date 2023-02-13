@@ -1,4 +1,4 @@
-import{j as n,d as r,F as t}from"./index.8c0c9264.js";function a(i){const e=Object.assign({h1:"h1",h2:"h2",ul:"ul",li:"li",h3:"h3",a:"a",p:"p",strong:"strong",code:"code",ol:"ol",h4:"h4",pre:"pre"},i.components);return r(t,{children:[n(e.h1,{children:"Systems design"}),`
+import{j as n,d as r,F as t}from"./index.e856fa70.js";function a(i){const e=Object.assign({h1:"h1",h2:"h2",ul:"ul",li:"li",h3:"h3",a:"a",p:"p",strong:"strong",code:"code",ol:"ol",h4:"h4",pre:"pre"},i.components);return r(t,{children:[n(e.h1,{children:"Systems design"}),`
 `,n(e.h2,{children:"terminologies"}),`
 `,r(e.ul,{children:[`
 `,n(e.li,{children:"throughput: amount of data transmitted at any given time"}),`
