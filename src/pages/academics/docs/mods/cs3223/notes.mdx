@@ -73,12 +73,12 @@ Tree based b+ tree indexing
 - usually cannot have duplicate keys (make composite key with unique attribute and range search instead)
 - Insert:
     1. if page not full, insert.
-    2. if page full, check right neighbor. if not empty, redistribute. repeat for left if right full:
+    2. if page full, check right neighbor. if not full, redistribute. repeat for left if right full:
         1. take `2d` smallest records, store in page. rest in neighbor. update parent node.
         2. e.g. `[4]-->[1,3][4] + 2` &rarr; `[3] --> [1,2][3,4]`.
     3. split page:
         1. take `d` smallest records, store in page. `d+1` remaining records put in new leaf. add parent index as smallest of `d+1` leaf node
-        2. if index node needs to split, `d` smallest indexes in 1 node, `d` largest indexes in 1 node. remaining 1 extra promote to higher depth.
+        2. if index node needs to split, `d` smallest indexes in 1 node, `d + 1` largest indexes in 1 node. remaining 1 extra promote to higher depth.
         3. e.g. order 1: `[4,8]-->[1,2][4,5][8,9] + 10` &rarr; `[4,8,9]-->[1,2][4,5][8][9,10]` &rarr; `[8] --> ([4] --> [1,2][4,5]) ([9]-->[8][9,10])`.
 - Deletion, underflow (node empty/ too little entries):
     1. page not underflow, ok.
@@ -104,6 +104,8 @@ Tree based b+ tree indexing
     - unclustered index definitely dense, since data is not sorted in terms of search key, have to keep each search key as index record
 
 ### Hashed based indexing
+
+access cost 1 w/o overflow page (+1 RID lookup if necessary)
 
 #### Static hashing
 - N buckets, store item with hash h in bucket `h % N`.
@@ -204,7 +206,7 @@ cost:
   - can optimize, write as initial sort runs, -1 merge depth next step
 - sort records: `2 * T * m`, `m` = number of passes (log initial sorted runs base merge factor + 1), `2x` for rw
 - scan and dedupe: `T` (0 if dedupe during merge)
-{/* TODO: last step should be x2? */}
+- no write cost since return after dedupe.
 
 ### Hash based approach
 
@@ -220,7 +222,6 @@ cost:
 - read all pages original table `R`
 - write all partitioned buckets `T`
 - deduplicate, rw all paritioned buckets `T` 
-{/* TODO: same, why dedupe only T not 2T rw? */}
 
 ## Joins
 
@@ -228,7 +229,7 @@ cost:
 
 ### Iteration
 
-**NOTE**: output write cost ignored since worst case cross everything outweigh any approach
+**NOTE**: output write cost ignored (return result).
 
 
 **Loop Join**:
@@ -242,15 +243,15 @@ Block nested loop join
 - cost = `numPagesOuter` + `numPagesOuter/(B - 2) * numPagesInner`.
 
 Index Nested Loop join
-- if join on attribute A and index on Inner.A exists (all attribs of join), then for each record in Inner search index for corresponding A and join.
-- cost = `numPagesOuter` + `numRecordsInner * (numInnerInternalDepth + avgLeafNodesPerKey)`
+- if join on attribute A and index on Inner.A exists (all attribs of join), then for each record in Outer search index for corresponding A and join.
+- cost = `numPagesOuter` + `numRecordsOuter * (numInnerInternalDepth + avgLeafNodesPerKey)`
 
 ### Sort merge join
 
 - Sort inner and outer, merge. 
 - if need to cross on both sides need rewind: inner = `10 10 20 21`, outer = `10 10 11 12`, after `inner1,outer1; inner1,outer2`, `inner2 == inner1` so rewind to `outer1`.
 - cost: external sort cost + `numPagesInner` + `numPagesOuter` (assuming no cross like above, else `numRecordsInner * numpagesOuter` cross pdt)
-- optimization: if number of buffer pages > number of sorted runs in Inner + outer, no need to continue merge in initial sort, can join already (take smallest page of each sorted run)
+- optimization: if number of buffer pages > `sqrt(2 * numPagesInner)`, assuming inner >= outer pages, no need to continue merge in initial sort, can join already (take smallest page of each sorted run)
 
 ### Hash join
 
@@ -261,4 +262,32 @@ Index Nested Loop join
 - if hash table does not fit in memory recursively partiton overflowed partitions
 - cost: `3 * (numPagesInner + numPagesOuter)` (assuming no overflow partition)
 - number of partitions `k = B - 1`, `B approx == sqrt(f * numPagesInner)` where `f` is fudge factor
+
+## Aggregation
+
+- simple aggregation: `select count(*) from T`, maintain counter table scan.
+- group by aggregation: `select year, count(*) from M group by year`.
+    1. sort by group attibute and scan (make use of covering indexes, index scan if exists)
+    2. build hash table with group attribute key, for each group aggregate
+
+## Query evaluation
+
+- Materialized evaluation: evaluate an operator (e.g. JOIN etc.) only when all operands have been fully evaluated. intermediate results materialized on disk (temp table).
+- Pipelined evaluation: pass intermediate result directly to parent (streaming, pass even when not finished yet). operator execution interleaved.
+- blocking operator: operator needs all inputs from child operators to produce output (external sort pass 0 needs all, grace hash join)
+- each operator 3 methods: `open` (init), `getNext` (record to be streamed), `close` (deallocate memory etc.)
+
+![rules1](./res/relAlg1.png)
+![rules2](./res/relAlg2.png)
+![rules3](./res/relAlg3.png)
+
+### Query plan tree types
+
+- linear: at least 1 operand of every join is base relation (not result of another join)
+- left-deep: every join operation, right operand is base. vice versa right deep.
+- bushy: not linear.
+
+![qTree](./res/qTreeType.png)
+
+{/* TODO: continue lect 6 */}
 

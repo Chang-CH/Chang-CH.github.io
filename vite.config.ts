@@ -4,6 +4,7 @@ import svgr from 'vite-plugin-svgr';
 import mdx from '@mdx-js/rollup';
 import path from 'path';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import autoprefixer from 'autoprefixer';
 
 const commons = {
   resolve: {
@@ -31,6 +32,11 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
         tsconfigPaths(),
       ],
       css: {
+        postcss: {
+          plugins: [
+            autoprefixer({}), // add options if needed
+          ],
+        },
         modules: {
           // similar to localIdentName of webpack, gives us more info to debug css
           generateScopedName: '[path][name]__[local]--[hash:base64:5]',
@@ -57,6 +63,11 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
       },
     },
     css: {
+      postcss: {
+        plugins: [
+          autoprefixer({}), // add options if needed
+        ],
+      },
       modules: {
         generateScopedName: '[hash:base64:5]',
         localsConvention: 'camelCaseOnly',
