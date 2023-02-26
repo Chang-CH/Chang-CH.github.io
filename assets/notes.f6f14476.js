@@ -1,4 +1,4 @@
-import{j as n,d as i,F as c}from"./index.e856fa70.js";function l(r){const e=Object.assign({h1:"h1",h2:"h2",h3:"h3",ol:"ol",li:"li",p:"p",ul:"ul",strong:"strong",code:"code",img:"img",hr:"hr",h4:"h4"},r.components);return i(c,{children:[n(e.h1,{children:"CS3223"}),`
+import{j as n,d as i,F as c}from"./index.19eef1f8.js";function l(r){const e=Object.assign({h1:"h1",h2:"h2",h3:"h3",ol:"ol",li:"li",p:"p",ul:"ul",strong:"strong",code:"code",img:"img",hr:"hr",h4:"h4"},r.components);return i(c,{children:[n(e.h1,{children:"CS3223"}),`
 `,n(e.h2,{children:"Memory (Week 1)"}),`
 `,n(e.h3,{children:"Memory hierachy (capacity, latency)"}),`
 `,i(e.ol,{children:[`
@@ -87,7 +87,7 @@ Turn reference bit on when pin count decrement to 0.`}),`
 `,n(e.p,{children:"Insert:"}),`
 `,i(e.ol,{children:[`
 `,n(e.li,{children:"if page not full, insert."}),`
-`,i(e.li,{children:["if page full, check right neighbor. if not empty, redistribute. repeat for left if right full:",`
+`,i(e.li,{children:["if page full, check right neighbor. if not full, redistribute. repeat for left if right full:",`
 `,i(e.ol,{children:[`
 `,i(e.li,{children:["take ",n(e.code,{children:"2d"})," smallest records, store in page. rest in neighbor. update parent node."]}),`
 `,i(e.li,{children:["e.g. ",n(e.code,{children:"[4]-->[1,3][4] + 2"})," \u2192 ",n(e.code,{children:"[3] --> [1,2][3,4]"}),"."]}),`
@@ -96,7 +96,7 @@ Turn reference bit on when pin count decrement to 0.`}),`
 `,i(e.li,{children:["split page:",`
 `,i(e.ol,{children:[`
 `,i(e.li,{children:["take ",n(e.code,{children:"d"})," smallest records, store in page. ",n(e.code,{children:"d+1"})," remaining records put in new leaf. add parent index as smallest of ",n(e.code,{children:"d+1"})," leaf node"]}),`
-`,i(e.li,{children:["if index node needs to split, ",n(e.code,{children:"d"})," smallest indexes in 1 node, ",n(e.code,{children:"d"})," largest indexes in 1 node. remaining 1 extra promote to higher depth."]}),`
+`,i(e.li,{children:["if index node needs to split, ",n(e.code,{children:"d"})," smallest indexes in 1 node, ",n(e.code,{children:"d + 1"})," largest indexes in 1 node. remaining 1 extra promote to higher depth."]}),`
 `,i(e.li,{children:["e.g. order 1: ",n(e.code,{children:"[4,8]-->[1,2][4,5][8,9] + 10"})," \u2192 ",n(e.code,{children:"[4,8,9]-->[1,2][4,5][8][9,10]"})," \u2192 ",n(e.code,{children:"[8] --> ([4] --> [1,2][4,5]) ([9]-->[8][9,10])"}),"."]}),`
 `]}),`
 `]}),`
@@ -138,6 +138,7 @@ Can only have 1 clustered index for each relation. e.g.: actual records sorted b
 `]}),`
 `]}),`
 `,n(e.h3,{children:"Hashed based indexing"}),`
+`,n(e.p,{children:"access cost 1 w/o overflow page (+1 RID lookup if necessary)"}),`
 `,n(e.h4,{children:"Static hashing"}),`
 `,i(e.ul,{children:[`
 `,i(e.li,{children:["N buckets, store item with hash h in bucket ",n(e.code,{children:"h % N"}),"."]}),`
@@ -261,8 +262,8 @@ Can only have 1 clustered index for each relation. e.g.: actual records sorted b
 `]}),`
 `,i(e.li,{children:["sort records: ",n(e.code,{children:"2 * T * m"}),", ",n(e.code,{children:"m"})," = number of passes (log initial sorted runs base merge factor + 1), ",n(e.code,{children:"2x"})," for rw"]}),`
 `,i(e.li,{children:["scan and dedupe: ",n(e.code,{children:"T"})," (0 if dedupe during merge)"]}),`
+`,n(e.li,{children:"no write cost since return after dedupe."}),`
 `]}),`
-`,`
 `,n(e.h3,{children:"Hash based approach"}),`
 `,n(e.p,{children:"process:"}),`
 `,i(e.ol,{children:[`
@@ -278,11 +279,10 @@ Can only have 1 clustered index for each relation. e.g.: actual records sorted b
 `,i(e.li,{children:["write all partitioned buckets ",n(e.code,{children:"T"})]}),`
 `,i(e.li,{children:["deduplicate, rw all paritioned buckets ",n(e.code,{children:"T"})]}),`
 `]}),`
-`,`
 `,n(e.h2,{children:"Joins"}),`
 `,i(e.p,{children:[n(e.code,{children:"Outer join Inner/R join S"})," (inner always rhs)"]}),`
 `,n(e.h3,{children:"Iteration"}),`
-`,i(e.p,{children:[n(e.strong,{children:"NOTE"}),": output write cost ignored since worst case cross everything outweigh any approach"]}),`
+`,i(e.p,{children:[n(e.strong,{children:"NOTE"}),": output write cost ignored (return result)."]}),`
 `,i(e.p,{children:[n(e.strong,{children:"Loop Join"}),":"]}),`
 `,i(e.ul,{children:[`
 `,n(e.li,{children:"For each record in Outer, check if matches record in inner. if match, output."}),`
@@ -296,15 +296,15 @@ Can only have 1 clustered index for each relation. e.g.: actual records sorted b
 `]}),`
 `,n(e.p,{children:"Index Nested Loop join"}),`
 `,i(e.ul,{children:[`
-`,n(e.li,{children:"if join on attribute A and index on Inner.A exists (all attribs of join), then for each record in Inner search index for corresponding A and join."}),`
-`,i(e.li,{children:["cost = ",n(e.code,{children:"numPagesOuter"})," + ",n(e.code,{children:"numRecordsInner * (numInnerInternalDepth + avgLeafNodesPerKey)"})]}),`
+`,n(e.li,{children:"if join on attribute A and index on Inner.A exists (all attribs of join), then for each record in Outer search index for corresponding A and join."}),`
+`,i(e.li,{children:["cost = ",n(e.code,{children:"numPagesOuter"})," + ",n(e.code,{children:"numRecordsOuter * (numInnerInternalDepth + avgLeafNodesPerKey)"})]}),`
 `]}),`
 `,n(e.h3,{children:"Sort merge join"}),`
 `,i(e.ul,{children:[`
 `,n(e.li,{children:"Sort inner and outer, merge."}),`
 `,i(e.li,{children:["if need to cross on both sides need rewind: inner = ",n(e.code,{children:"10 10 20 21"}),", outer = ",n(e.code,{children:"10 10 11 12"}),", after ",n(e.code,{children:"inner1,outer1; inner1,outer2"}),", ",n(e.code,{children:"inner2 == inner1"})," so rewind to ",n(e.code,{children:"outer1"}),"."]}),`
 `,i(e.li,{children:["cost: external sort cost + ",n(e.code,{children:"numPagesInner"})," + ",n(e.code,{children:"numPagesOuter"})," (assuming no cross like above, else ",n(e.code,{children:"numRecordsInner * numpagesOuter"})," cross pdt)"]}),`
-`,n(e.li,{children:"optimization: if number of buffer pages > number of sorted runs in Inner + outer, no need to continue merge in initial sort, can join already (take smallest page of each sorted run)"}),`
+`,i(e.li,{children:["optimization: if number of buffer pages > ",n(e.code,{children:"sqrt(2 * numPagesInner)"}),", assuming inner >= outer pages, no need to continue merge in initial sort, can join already (take smallest page of each sorted run)"]}),`
 `]}),`
 `,n(e.h3,{children:"Hash join"}),`
 `,i(e.ul,{children:[`
@@ -315,4 +315,32 @@ Can only have 1 clustered index for each relation. e.g.: actual records sorted b
 `,n(e.li,{children:"if hash table does not fit in memory recursively partiton overflowed partitions"}),`
 `,i(e.li,{children:["cost: ",n(e.code,{children:"3 * (numPagesInner + numPagesOuter)"})," (assuming no overflow partition)"]}),`
 `,i(e.li,{children:["number of partitions ",n(e.code,{children:"k = B - 1"}),", ",n(e.code,{children:"B approx == sqrt(f * numPagesInner)"})," where ",n(e.code,{children:"f"})," is fudge factor"]}),`
-`]})]})}function t(r={}){const{wrapper:e}=r.components||{};return e?n(e,Object.assign({},r,{children:n(l,r)})):l(r)}export{t as default};
+`]}),`
+`,n(e.h2,{children:"Aggregation"}),`
+`,i(e.ul,{children:[`
+`,i(e.li,{children:["simple aggregation: ",n(e.code,{children:"select count(*) from T"}),", maintain counter table scan."]}),`
+`,i(e.li,{children:["group by aggregation: ",n(e.code,{children:"select year, count(*) from M group by year"}),".",`
+`,i(e.ol,{children:[`
+`,n(e.li,{children:"sort by group attibute and scan (make use of covering indexes, index scan if exists)"}),`
+`,n(e.li,{children:"build hash table with group attribute key, for each group aggregate"}),`
+`]}),`
+`]}),`
+`]}),`
+`,n(e.h2,{children:"Query evaluation"}),`
+`,i(e.ul,{children:[`
+`,n(e.li,{children:"Materialized evaluation: evaluate an operator (e.g. JOIN etc.) only when all operands have been fully evaluated. intermediate results materialized on disk (temp table)."}),`
+`,n(e.li,{children:"Pipelined evaluation: pass intermediate result directly to parent (streaming, pass even when not finished yet). operator execution interleaved."}),`
+`,n(e.li,{children:"blocking operator: operator needs all inputs from child operators to produce output (external sort pass 0 needs all, grace hash join)"}),`
+`,i(e.li,{children:["each operator 3 methods: ",n(e.code,{children:"open"})," (init), ",n(e.code,{children:"getNext"})," (record to be streamed), ",n(e.code,{children:"close"})," (deallocate memory etc.)"]}),`
+`]}),`
+`,i(e.p,{children:[n(e.img,{src:"./res/relAlg1.png",alt:"rules1"}),`
+`,n(e.img,{src:"./res/relAlg2.png",alt:"rules2"}),`
+`,n(e.img,{src:"./res/relAlg3.png",alt:"rules3"})]}),`
+`,n(e.h3,{children:"Query plan tree types"}),`
+`,i(e.ul,{children:[`
+`,n(e.li,{children:"linear: at least 1 operand of every join is base relation (not result of another join)"}),`
+`,n(e.li,{children:"left-deep: every join operation, right operand is base. vice versa right deep."}),`
+`,n(e.li,{children:"bushy: not linear."}),`
+`]}),`
+`,n(e.p,{children:n(e.img,{src:"./res/qTreeType.png",alt:"qTree"})}),`
+`]})}function t(r={}){const{wrapper:e}=r.components||{};return e?n(e,Object.assign({},r,{children:n(l,r)})):l(r)}export{t as default};

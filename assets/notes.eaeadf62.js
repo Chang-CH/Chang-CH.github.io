@@ -1,4 +1,4 @@
-import{j as n,d as t,F as a}from"./index.e856fa70.js";function r(i){const e=Object.assign({h1:"h1",h2:"h2",p:"p",em:"em",h3:"h3",ol:"ol",li:"li",ul:"ul"},i.components);return t(a,{children:[n(e.h1,{children:"CS2030S"}),`
+import{j as n,d as t,F as a}from"./index.19eef1f8.js";function r(i){const e=Object.assign({h1:"h1",h2:"h2",p:"p",em:"em",h3:"h3",ol:"ol",li:"li",ul:"ul"},i.components);return t(a,{children:[n(e.h1,{children:"CS2030S"}),`
 `,n(e.h2,{children:"Unit 2 Variables, Type"}),`
 `,t(e.p,{children:[`Variable Type: decides what operations can be used on the data, how it should be interpreted, what kind of abstraction it is.
 Primitives: pass by value variables that do not share values with each other. e.g. byte, short, int, long, float, double, char, boolean

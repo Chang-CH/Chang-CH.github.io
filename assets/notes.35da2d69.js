@@ -1,4 +1,4 @@
-import{j as n,d as r,F as t}from"./index.e856fa70.js";function l(c){const e=Object.assign({h1:"h1",h2:"h2",h3:"h3",ol:"ol",li:"li",p:"p",a:"a",code:"code",ul:"ul",strong:"strong",h4:"h4"},c.components),{Details:i}=e;return i||d("Details",!0),r(t,{children:[n(e.h1,{children:"Networking summary"}),`
+import{j as n,d as r,F as t}from"./index.19eef1f8.js";function l(c){const e=Object.assign({h1:"h1",h2:"h2",h3:"h3",ol:"ol",li:"li",p:"p",a:"a",code:"code",ul:"ul",strong:"strong",h4:"h4"},c.components),{Details:i}=e;return i||d("Details",!0),r(t,{children:[n(e.h1,{children:"Networking summary"}),`
 `,n(e.h2,{children:"Visiting a page"}),`
 `,n(e.h3,{children:"Resolving IP of page"}),`
 `,r(e.ol,{children:[`
